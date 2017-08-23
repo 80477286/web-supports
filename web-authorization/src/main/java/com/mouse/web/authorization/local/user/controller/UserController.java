@@ -44,7 +44,7 @@ public class UserController {
 
 
     @RequestMapping(value = "/user/query")
-    @JsonReturn
+    @JsonReturn(excludeProperties = ".*\\.roles")
     public Page<User> query(@MapParam Map<String, Object> params, @EntityParam PageParam pageable) {
         return userService.findAll(params, pageable);
     }

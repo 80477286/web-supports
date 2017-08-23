@@ -16,13 +16,13 @@ import java.util.List;
 /**
  * Created by cwx183898 on 2017/8/17.
  */
-public class EntityParamRequestMappingHandlerAdapter extends RequestMappingHandlerAdapter {
+public class ExtendRequestMappingHandlerAdapter extends RequestMappingHandlerAdapter {
     private List<HandlerMethodArgumentResolver> beforeCustomArgumentResolvers;
     private List<HandlerMethodArgumentResolver> afterCustomArgumentResolvers;
     protected List<HandlerMethodReturnValueHandler> beforeCustomReturnHandlers;
     protected List<HandlerMethodReturnValueHandler> afterCustomReturnHandlers;
 
-    public EntityParamRequestMappingHandlerAdapter(List<HandlerMethodArgumentResolver> beforeCustomArgumentResolvers, List<HandlerMethodArgumentResolver> afterCustomArgumentResolvers, List<HandlerMethodReturnValueHandler> beforeCustomReturnHandlers, List<HandlerMethodReturnValueHandler> afterCustomReturnHandlers) {
+    public ExtendRequestMappingHandlerAdapter(List<HandlerMethodArgumentResolver> beforeCustomArgumentResolvers, List<HandlerMethodArgumentResolver> afterCustomArgumentResolvers, List<HandlerMethodReturnValueHandler> beforeCustomReturnHandlers, List<HandlerMethodReturnValueHandler> afterCustomReturnHandlers) {
         this.beforeCustomArgumentResolvers = beforeCustomArgumentResolvers;
         this.afterCustomArgumentResolvers = afterCustomArgumentResolvers;
         this.beforeCustomReturnHandlers = beforeCustomReturnHandlers;

@@ -14,8 +14,8 @@
     </modules>
     <distributionManagement>
         <repository>
-            <id>nexus-up</id>
-            <url>http://10.141.172.149:8081/nexus/content/repositories/releases/</url>
+            <id>local-nexus</id>
+            <url>http://192.168.1.13:18080/nexus/content/repositories/releases/</url>
         </repository>
     </distributionManagement>
     <build>
