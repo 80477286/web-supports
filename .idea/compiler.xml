@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="CompilerConfiguration">
+    <annotationProcessing>
+      <profile name="Maven default annotation processors profile" enabled="true">
+        <sourceOutputDir name="target/generated-sources/annotations" />
+        <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
+        <outputRelativeToContentRoot value="true" />
+        <module name="ldap-local-example" />
+        <module name="web-authorization" />
+        <module name="web-base" />
+      </profile>
+    </annotationProcessing>
+    <bytecodeTargetLevel>
+      <module name="ldap-local-example" target="1.6" />
+      <module name="web-authorization" target="1.6" />
+      <module name="web-base" target="1.6" />
+      <module name="web-supports" target="1.6" />
+    </bytecodeTargetLevel>
+  </component>
+</project>
