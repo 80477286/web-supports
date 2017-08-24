@@ -51,6 +51,4 @@ public class WebLocalSecurityConfigurerAdapter extends WebSecurityConfigurationS
     public Md5PasswordEncoder passwordEncoder() {
         return new Md5PasswordEncoder();
     }
-
-
 }

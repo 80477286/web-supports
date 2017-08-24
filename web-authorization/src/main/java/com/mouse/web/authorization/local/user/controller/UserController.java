@@ -39,7 +39,7 @@ public class UserController {
 
     @RequestMapping(value = "/user/save")
     public User save(@EntityParam User user) {
-        user.setPassword(new Md5PasswordEncoder().encodePassword(user.getPassword(), "19800307"));
+        user.setPassword(new Md5PasswordEncoder().encodePassword(user.getPassword(), "MD5"));
         User result = userService.save(user);
         return result;
     }
