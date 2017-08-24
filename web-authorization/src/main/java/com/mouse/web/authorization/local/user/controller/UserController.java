@@ -10,6 +10,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
+import org.springframework.security.authentication.encoding.Md5PasswordEncoder;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -37,8 +38,9 @@ public class UserController {
     }
 
     @RequestMapping(value = "/user/save")
-    public User save(@EntityParam List<User> users) {
-        User result = userService.save(users.get(0));
+    public User save(@EntityParam User user) {
+        user.setPassword(new Md5PasswordEncoder().encodePassword(user.getPassword(), "19800307"));
+        User result = userService.save(user);
         return result;
     }
 

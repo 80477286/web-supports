@@ -1,5 +1,7 @@
 package com.mouse.web.authorization.local.user;
 
+import com.mouse.web.authorization.local.role.model.Role;
+import com.mouse.web.authorization.local.role.service.IRoleService;
 import com.mouse.web.authorization.local.user.model.User;
 import com.mouse.web.authorization.local.user.service.IUserService;
 import com.mouse.web.example.ExampleApplication;
@@ -31,8 +33,11 @@ import java.util.Map;
 public class UserServiceTester {
     @Autowired
     private IUserService userService;
+    @Autowired
+    private IRoleService roleService;
 
     private User user;
+    private Role role;
 
     @Before
     public void init() {
@@ -47,6 +52,12 @@ public class UserServiceTester {
         user.setCredentialsExpiringDate(DateUtils.addYears(new Date(), 1));
         this.user = userService.save(user);
         Assert.assertNotNull(this.user.getId());
+
+        Role role = new Role();
+        role.setName("管理员");
+        role.setCreator("SYSTEM");
+        this.role = roleService.save(role);
+        Assert.assertNotNull(this.role.getId());
     }
 
     @Test

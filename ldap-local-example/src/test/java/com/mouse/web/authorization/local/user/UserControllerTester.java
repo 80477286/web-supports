@@ -1,7 +1,13 @@
 package com.mouse.web.authorization.local.user;
 
+import com.mouse.web.authorization.local.role.model.Role;
+import com.mouse.web.authorization.local.role.service.IRoleService;
 import com.mouse.web.authorization.local.user.controller.UserController;
+import com.mouse.web.authorization.local.user.model.User;
+import com.mouse.web.authorization.local.user.service.IUserService;
 import com.mouse.web.example.ExampleApplication;
+import org.apache.commons.lang3.time.DateUtils;
+import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -23,6 +29,8 @@ import org.springframework.util.LinkedMultiValueMap;
 import org.springframework.util.MultiValueMap;
 import org.springframework.web.context.WebApplicationContext;
 
+import java.util.Date;
+
 /**
  * Created by cwx183898 on 2017/8/16.
  */
@@ -36,8 +44,15 @@ public class UserControllerTester {
     @Autowired
     private UserController userController;
 
+    @Autowired
+    private IUserService userService;
+    @Autowired
+    private IRoleService roleService;
     //mock api 模拟http请求
     private MockMvc mockMvc;
+
+    private User user;
+    private Role role;
 
     //初始化工作
     @Before
@@ -46,6 +61,25 @@ public class UserControllerTester {
         //mockMvc = MockMvcBuilders.standaloneSetup(userController).build();
         //集成Web环境测试（此种方式并不会集成真正的web环境，而是通过相应的Mock API进行模拟测试，无须启动服务器）
         mockMvc = MockMvcBuilders.webAppContextSetup(context).build();
+
+
+        User user = new User();
+        user.setEmail("testmail");
+        user.setUsername("testusername");
+        user.setPassword("testpassword");
+        user.setName("testname");
+        user.setCreator("testSYSTEM");
+        user.setLocked(false);
+        user.setAccountExpiringDate(DateUtils.addYears(new Date(), 1));
+        user.setCredentialsExpiringDate(DateUtils.addYears(new Date(), 1));
+        this.user = userService.save(user);
+        Assert.assertNotNull(this.user.getId());
+
+        Role role = new Role();
+        role.setName("管理员");
+        role.setCreator("SYSTEM");
+        this.role = roleService.save(role);
+        Assert.assertNotNull(this.role.getId());
     }
 
     //测试
@@ -66,14 +100,13 @@ public class UserControllerTester {
     //@WithUserDetails("cwx183898")
     public void save() throws Exception {
         MultiValueMap<String, String> params = new LinkedMultiValueMap<String, String>(0);
-        params.add("users[0].username", "username");
-        params.add("users[0].name", "name");
-        params.add("users[0].password", "password");
-        params.add("users[0].locked", "false");
-        params.add("users[0].creator", "creator");
-        params.add("users[0].accountExpiringDate", "2019-09-09");
-        params.add("users[0].credentialsExpiringDate", "2019-09-09");
-        params.add("users[0].roles[1].id", "1");
+        params.add("user.username", "username");
+        params.add("user.name", "name");
+        params.add("user.password", "password");
+        params.add("user.locked", "false");
+        params.add("user.creator", "creator");
+        params.add("user.accountExpiringDate", "2019-09-09");
+        params.add("user.credentialsExpiringDate", "2019-09-09");
         MockHttpServletRequestBuilder builder = MockMvcRequestBuilders.post("/user/save");
         builder.params(params);
         builder.contentType(MediaType.APPLICATION_FORM_URLENCODED);
@@ -91,7 +124,7 @@ public class UserControllerTester {
     @Test
     public void query() throws Exception {
         MultiValueMap<String, String> params = new LinkedMultiValueMap<String, String>(0);
-        params.add("params.id", "1");
+        params.add("params.id", user.getId());
         params.add("pageable.size", "1");
         params.add("pageable.page", "0");
         MockHttpServletRequestBuilder builder = MockMvcRequestBuilders.post("/user/query");
@@ -104,7 +137,7 @@ public class UserControllerTester {
         result.andDo(MockMvcResultHandlers.print());//打印出请求和相应的内容
         result.andReturn().getResponse().getContentAsString();
         result.andExpect(MockMvcResultMatchers.content().contentType("application/json;charset=UTF-8"));
-        result.andExpect(MockMvcResultMatchers.jsonPath("$.username").value("username"));
+        result.andExpect(MockMvcResultMatchers.jsonPath(".username").value(user.getUsername()));
     }
 
 }
