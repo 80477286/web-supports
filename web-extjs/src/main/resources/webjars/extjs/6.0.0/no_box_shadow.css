@@ -1,0 +1,19 @@
+.x-tab-default-top.x-tab-focus.x-tab-active,.x-tab-default-top.x-tab-focus.x-tab-over,.x-btn-focus.x-btn-over.x-btn-default-toolbar-small,.x-btn-focus.x-btn-default-toolbar-small,.x-btn-focus.x-btn-default-small
+	{
+	-webkit-box-shadow: none !important;
+	-moz-box-shadow: none !important;
+	box-shadow: none !important;
+}
+
+.x-form-readonly  .x-form-text-default,.x-form-readonly  .x-form-cb-default
+	{
+	background-color: #EFEFEF;
+}
+
+.x-htmleditor-iframe {
+	border: 1px solid #CDCDCD;
+}
+
+.x-toolbar-default {
+	border: none;
+}

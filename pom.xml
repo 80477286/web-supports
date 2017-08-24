@@ -11,6 +11,7 @@
         <module>web-authorization</module>
         <module>web-base</module>
         <module>ldap-local-example</module>
+        <module>web-extjs</module>
     </modules>
     <distributionManagement>
         <repository>
