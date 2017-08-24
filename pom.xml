@@ -15,7 +15,7 @@
     <distributionManagement>
         <repository>
             <id>local-nexus</id>
-            <url>http://192.168.1.13:18080/nexus/content/repositories/releases/</url>
+            <url>http://192.168.0.95:18080/nexus/content/repositories/releases/</url>
         </repository>
     </distributionManagement>
     <build>
