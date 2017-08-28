@@ -24,7 +24,7 @@ public class LocalUserDetailsService implements UserDetailsService {
         User user = userService.findByUsername(username);
         if (user != null) {
             //预加载所有用户权限
-            List<Role> roles = roleService.findByResource(user.getId());
+            List<Role> roles = roleService.findByUser(user.getId());
             user.setRoles(roles);
             return new UserDetailsAdapter(user);
         }
