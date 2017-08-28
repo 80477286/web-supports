@@ -1,8 +1,8 @@
 package com.mouse.web.authorization.local;
 
-import com.mouse.web.authorization.atapter.UserDetailsAdapter;
 import com.mouse.web.authorization.local.role.model.Role;
 import com.mouse.web.authorization.local.role.service.IRoleService;
+import com.mouse.web.authorization.local.user.adapter.UserDetailsAdapter;
 import com.mouse.web.authorization.local.user.model.User;
 import com.mouse.web.authorization.local.user.service.IUserService;
 import org.springframework.beans.factory.annotation.Autowired;

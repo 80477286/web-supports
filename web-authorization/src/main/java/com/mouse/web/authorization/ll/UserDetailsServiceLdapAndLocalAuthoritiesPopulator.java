@@ -1,6 +1,6 @@
 package com.mouse.web.authorization.ll;
 
-import com.mouse.web.authorization.atapter.UserDetailsAdapter;
+import com.mouse.web.authorization.ll.adapter.UserDetailsAdapter;
 import com.mouse.web.authorization.local.user.model.User;
 import com.mouse.web.authorization.local.user.service.IUserService;
 import org.apache.commons.lang3.time.DateUtils;

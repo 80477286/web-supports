@@ -1,4 +1,4 @@
-package com.mouse.web.authorization.atapter;
+package com.mouse.web.authorization.ll.adapter;
 
 import com.mouse.web.authorization.local.role.model.Role;
 import org.springframework.security.core.GrantedAuthority;

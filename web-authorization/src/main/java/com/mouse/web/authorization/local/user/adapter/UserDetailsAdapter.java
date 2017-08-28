@@ -1,5 +1,6 @@
-package com.mouse.web.authorization.atapter;
+package com.mouse.web.authorization.local.user.adapter;
 
+import com.mouse.web.authorization.ll.adapter.GrantedAuthorityAdapter;
 import com.mouse.web.authorization.local.role.model.Role;
 import com.mouse.web.authorization.local.user.model.User;
 import org.springframework.security.core.GrantedAuthority;
@@ -12,7 +13,7 @@ import java.util.Date;
 import java.util.List;
 
 
-public class UserDetailsAdapter extends LdapUserDetailsImpl implements UserDetails {
+public class UserDetailsAdapter implements UserDetails {
     private static final long serialVersionUID = 6251178934597843690L;
 
     private User user;
