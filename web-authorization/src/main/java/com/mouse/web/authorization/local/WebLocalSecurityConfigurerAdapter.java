@@ -15,8 +15,6 @@ import org.springframework.security.web.access.intercept.FilterSecurityIntercept
  */
 public class WebLocalSecurityConfigurerAdapter extends WebSecurityConfigurationSupports {
 
-    @Autowired
-    protected LocalUserDetailsService userDetailsService;
 
     @Autowired
     protected LocalSecurityFilter filter;
@@ -37,7 +35,7 @@ public class WebLocalSecurityConfigurerAdapter extends WebSecurityConfigurationS
 
     @Autowired
     public void configureGlobal(AuthenticationManagerBuilder auth) throws Exception {
-        auth.userDetailsService(userDetailsService)
+        auth.userDetailsService(userDetailsService())
                 .passwordEncoder(passwordEncoder());
         auth.eraseCredentials(false);
     }
@@ -50,5 +48,10 @@ public class WebLocalSecurityConfigurerAdapter extends WebSecurityConfigurationS
     @Bean
     public Md5PasswordEncoder passwordEncoder() {
         return new Md5PasswordEncoder();
+    }
+
+    @Bean
+    protected LocalUserDetailsService userDetailsService() {
+        return new LocalUserDetailsService();
     }
 }
