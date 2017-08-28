@@ -47,8 +47,7 @@ public class LocalSecurityMetadataSource implements
         }
         for (Resource resource : resources) {
             if (resource.getUrl() != null && !resource.getUrl().trim().isEmpty()) {
-                resource.getRoles();
-                configAttributes.add(resource);
+                configAttributes.add(new ResourceConfigAttribute(resource.getId(), resource.getUrl()));
             }
         }
         return configAttributes;
@@ -64,15 +63,15 @@ public class LocalSecurityMetadataSource implements
             throws IllegalArgumentException {
         String requestUrl = getUrl(object);
         Collection<ConfigAttribute> roles = new ArrayList<ConfigAttribute>();
-        Collection<ConfigAttribute> resources = getAllConfigAttributes();
-        for (ConfigAttribute ca : resources) {
+        Collection<ConfigAttribute> configAttributes = getAllConfigAttributes();
+        for (ConfigAttribute ca : configAttributes) {
+            ResourceConfigAttribute rca = (ResourceConfigAttribute) ca;
             //resource.getAttribute()实际上是取Resource中的url属性
-            boolean matched = antPathMatcher.match(ca.getAttribute(), requestUrl);
+            boolean matched = antPathMatcher.match(rca.getUrl(), requestUrl);
             if (matched) {
-                Resource resource = (Resource) ca;
-                if (resource.getRoles() != null) {
-                    List<Role> list = roleServices.findByResource(resource.getId());
-                    roles.addAll(list);
+                List<Role> list = roleServices.findByResource(rca.getAttribute());
+                for (Role role : list) {
+                    roles.add(new RoleConfigAttribute(role.getId()));
                 }
                 break;
             }
@@ -91,5 +90,38 @@ public class LocalSecurityMetadataSource implements
         String requestUrl = filterInvocation.getRequestUrl();
         LOG.debug("Request URL:" + requestUrl);
         return requestUrl;
+    }
+
+
+    public static class RoleConfigAttribute implements ConfigAttribute {
+        private String id;
+
+        public RoleConfigAttribute(String id) {
+            this.id = id;
+        }
+
+        @Override
+        public String getAttribute() {
+            return id;
+        }
+    }
+
+    public static class ResourceConfigAttribute implements ConfigAttribute {
+        private String id;
+        private String url;
+
+        public ResourceConfigAttribute(String id, String url) {
+            this.id = id;
+            this.url = url;
+        }
+
+        @Override
+        public String getAttribute() {
+            return id;
+        }
+
+        public String getUrl() {
+            return url;
+        }
     }
 }

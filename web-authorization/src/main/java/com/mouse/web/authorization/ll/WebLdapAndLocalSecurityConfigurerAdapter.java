@@ -34,18 +34,12 @@ public class WebLdapAndLocalSecurityConfigurerAdapter extends WebSecurityConfigu
     protected String searchFilter = "(samaccountname={0})";
     protected String providerUrl = "ldap://lggad05-dc/dc=china,dc=huawei,dc=com";
 
-    @Autowired
-    protected LocalUserDetailsService userDetailsService;
-
-    @Autowired
-    protected LocalSecurityFilter filter;
-
 
     @Override
     protected void configure(HttpSecurity http) throws Exception {
         String[] matchers = (getPermits() == null || getPermits().trim().isEmpty()) ? new String[0] : getPermits().split("[,]");
         LOGGER.info("自定义免验证地址列表：" + Arrays.toString(matchers));
-        http.authenticationProvider(getAuthenticationProvider()).addFilterBefore(filter, FilterSecurityInterceptor.class)
+        http.authenticationProvider(getAuthenticationProvider()).addFilterBefore(localSecurityFilter(), FilterSecurityInterceptor.class)
                 .authorizeRequests()
                 //免验证地址
                 .antMatchers(matchers).permitAll()
@@ -63,8 +57,13 @@ public class WebLdapAndLocalSecurityConfigurerAdapter extends WebSecurityConfigu
 
 
     @Bean
+    protected LocalSecurityFilter localSecurityFilter() {
+        return new LocalSecurityFilter();
+    }
+
+    @Bean
     public LdapAuthoritiesPopulator getLdapAuthoritiesPopulator() {
-        LdapAuthoritiesPopulator ldapAuthoritiesPopulator = new UserDetailsServiceLdapAndLocalAuthoritiesPopulator(userDetailsService);
+        LdapAuthoritiesPopulator ldapAuthoritiesPopulator = new UserDetailsServiceLdapAndLocalAuthoritiesPopulator(userDetailsService());
         return ldapAuthoritiesPopulator;
     }
 
@@ -84,6 +83,11 @@ public class WebLdapAndLocalSecurityConfigurerAdapter extends WebSecurityConfigu
     public DefaultSpringSecurityContextSource contextSource() {
         DefaultSpringSecurityContextSource cs = new DefaultSpringSecurityContextSource(getProviderUrl());
         return cs;
+    }
+
+    @Bean
+    protected LdapUserDetailsService userDetailsService() {
+        return new LdapUserDetailsService();
     }
 
     public String getSearchBase() {

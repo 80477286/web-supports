@@ -11,6 +11,7 @@ import javax.annotation.PostConstruct;
 import javax.servlet.*;
 import java.io.IOException;
 
+@SuppressWarnings("ALL")
 @Service
 public class LocalSecurityFilter extends AbstractSecurityInterceptor implements Filter {
 

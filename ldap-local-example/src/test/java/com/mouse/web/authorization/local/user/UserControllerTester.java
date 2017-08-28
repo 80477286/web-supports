@@ -90,18 +90,16 @@ public class UserControllerTester {
     //@WithUserDetails("cwx183898")
     public void save() throws Exception {
         MultiValueMap<String, String> params = new LinkedMultiValueMap<String, String>(0);
-        params.add("users[0].username", "username");
-        params.add("users[0].name", "name");
-        params.add("users[0].password", "password");
-        params.add("users[0].locked", "false");
-        params.add("users[0].creator", "creator");
-        params.add("users[0].accountExpiringDate", "2019-09-09");
-        params.add("users[0].credentialsExpiringDate", "2019-09-09");
-        params.add("users[0].roles[1].id", "1");
+        params.add("user.username", "username");
+        params.add("user.name", "name");
+        params.add("user.password", "password");
+        params.add("user.locked", "false");
+        params.add("user.creator", "creator");
+        params.add("user.accountExpiringDate", "2019-09-09");
+        params.add("user.credentialsExpiringDate", "2019-09-09");
         MockHttpServletRequestBuilder builder = MockMvcRequestBuilders.post("/user/save");
         builder.params(params);
         builder.contentType(MediaType.APPLICATION_FORM_URLENCODED);
-
 
         ResultActions result = mockMvc.perform(builder);
         result.andExpect(MockMvcResultMatchers.status().isOk());
