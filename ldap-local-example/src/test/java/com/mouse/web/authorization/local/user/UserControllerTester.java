@@ -1,7 +1,5 @@
 package com.mouse.web.authorization.local.user;
 
-import com.mouse.web.authorization.local.role.model.Role;
-import com.mouse.web.authorization.local.role.service.IRoleService;
 import com.mouse.web.authorization.local.user.controller.UserController;
 import com.mouse.web.authorization.local.user.model.User;
 import com.mouse.web.authorization.local.user.service.IUserService;
@@ -14,8 +12,6 @@ import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.http.MediaType;
-import org.springframework.security.test.context.support.WithMockUser;
-import org.springframework.security.test.context.support.WithUserDetails;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.ResultActions;
@@ -41,18 +37,20 @@ import java.util.Date;
 public class UserControllerTester {
     @Autowired
     private WebApplicationContext context;
+
+    @SuppressWarnings("SpringJavaAutowiringInspection")
     @Autowired
     private UserController userController;
 
-    @Autowired
-    private IUserService userService;
-    @Autowired
-    private IRoleService roleService;
     //mock api 模拟http请求
     private MockMvc mockMvc;
 
+    @SuppressWarnings("SpringJavaAutowiringInspection")
+    @Autowired
+    private IUserService userService;
+
     private User user;
-    private Role role;
+
 
     //初始化工作
     @Before
@@ -61,8 +59,6 @@ public class UserControllerTester {
         //mockMvc = MockMvcBuilders.standaloneSetup(userController).build();
         //集成Web环境测试（此种方式并不会集成真正的web环境，而是通过相应的Mock API进行模拟测试，无须启动服务器）
         mockMvc = MockMvcBuilders.webAppContextSetup(context).build();
-
-
         User user = new User();
         user.setEmail("testmail");
         user.setUsername("testusername");
@@ -74,12 +70,6 @@ public class UserControllerTester {
         user.setCredentialsExpiringDate(DateUtils.addYears(new Date(), 1));
         this.user = userService.save(user);
         Assert.assertNotNull(this.user.getId());
-
-        Role role = new Role();
-        role.setName("管理员");
-        role.setCreator("SYSTEM");
-        this.role = roleService.save(role);
-        Assert.assertNotNull(this.role.getId());
     }
 
     //测试
@@ -100,13 +90,14 @@ public class UserControllerTester {
     //@WithUserDetails("cwx183898")
     public void save() throws Exception {
         MultiValueMap<String, String> params = new LinkedMultiValueMap<String, String>(0);
-        params.add("user.username", "username");
-        params.add("user.name", "name");
-        params.add("user.password", "password");
-        params.add("user.locked", "false");
-        params.add("user.creator", "creator");
-        params.add("user.accountExpiringDate", "2019-09-09");
-        params.add("user.credentialsExpiringDate", "2019-09-09");
+        params.add("users[0].username", "username");
+        params.add("users[0].name", "name");
+        params.add("users[0].password", "password");
+        params.add("users[0].locked", "false");
+        params.add("users[0].creator", "creator");
+        params.add("users[0].accountExpiringDate", "2019-09-09");
+        params.add("users[0].credentialsExpiringDate", "2019-09-09");
+        params.add("users[0].roles[1].id", "1");
         MockHttpServletRequestBuilder builder = MockMvcRequestBuilders.post("/user/save");
         builder.params(params);
         builder.contentType(MediaType.APPLICATION_FORM_URLENCODED);
@@ -124,7 +115,7 @@ public class UserControllerTester {
     @Test
     public void query() throws Exception {
         MultiValueMap<String, String> params = new LinkedMultiValueMap<String, String>(0);
-        params.add("params.id", user.getId());
+        params.add("params.id", "1");
         params.add("pageable.size", "1");
         params.add("pageable.page", "0");
         MockHttpServletRequestBuilder builder = MockMvcRequestBuilders.post("/user/query");
@@ -137,7 +128,7 @@ public class UserControllerTester {
         result.andDo(MockMvcResultHandlers.print());//打印出请求和相应的内容
         result.andReturn().getResponse().getContentAsString();
         result.andExpect(MockMvcResultMatchers.content().contentType("application/json;charset=UTF-8"));
-        result.andExpect(MockMvcResultMatchers.jsonPath(".username").value(user.getUsername()));
+        result.andExpect(MockMvcResultMatchers.jsonPath(".username").value("testusername"));
     }
 
 }

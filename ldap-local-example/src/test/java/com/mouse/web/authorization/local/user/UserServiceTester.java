@@ -1,7 +1,5 @@
 package com.mouse.web.authorization.local.user;
 
-import com.mouse.web.authorization.local.role.model.Role;
-import com.mouse.web.authorization.local.role.service.IRoleService;
 import com.mouse.web.authorization.local.user.model.User;
 import com.mouse.web.authorization.local.user.service.IUserService;
 import com.mouse.web.example.ExampleApplication;
@@ -14,9 +12,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
-import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
-import org.springframework.data.jpa.repository.query.QueryUtils;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -31,13 +27,11 @@ import java.util.Map;
 @SpringBootTest(classes = {ExampleApplication.class})
 @Transactional
 public class UserServiceTester {
+    @SuppressWarnings("SpringJavaAutowiringInspection")
     @Autowired
     private IUserService userService;
-    @Autowired
-    private IRoleService roleService;
 
     private User user;
-    private Role role;
 
     @Before
     public void init() {
@@ -52,12 +46,6 @@ public class UserServiceTester {
         user.setCredentialsExpiringDate(DateUtils.addYears(new Date(), 1));
         this.user = userService.save(user);
         Assert.assertNotNull(this.user.getId());
-
-        Role role = new Role();
-        role.setName("管理员");
-        role.setCreator("SYSTEM");
-        this.role = roleService.save(role);
-        Assert.assertNotNull(this.role.getId());
     }
 
     @Test
