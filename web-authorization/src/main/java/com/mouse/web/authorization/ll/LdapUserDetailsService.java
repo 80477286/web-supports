@@ -33,9 +33,9 @@ public class LdapUserDetailsService implements UserDetailsService {
                 gas.add(new SimpleGrantedAuthority(role.getId()));
             }
             boolean enabled = user.getEnabled();
-            boolean accountNonExpired = user.getAccountExpiringDate() == null || user.getAccountExpiringDate().getTime() < new Date().getTime() ? false : true;
-            boolean credentialsNonExpired = user.getCredentialsExpiringDate() == null || user.getCredentialsExpiringDate().getTime() < new Date().getTime() ? false : true;
-            boolean accountNonLocked = user.getLocked();
+            boolean accountNonExpired = user.getAccountExpiringDate() == null || user.getAccountExpiringDate().getTime() > new Date().getTime() ? true : false;
+            boolean credentialsNonExpired = user.getCredentialsExpiringDate() == null || user.getCredentialsExpiringDate().getTime() > new Date().getTime() ? true : false;
+            boolean accountNonLocked = !user.getLocked();
             return new org.springframework.security.core.userdetails.User(user.getUsername(), user.getPassword(), enabled, accountNonExpired, credentialsNonExpired, accountNonLocked, gas);
         }
         return null;
