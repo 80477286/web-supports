@@ -6,6 +6,8 @@ import com.mouse.web.supports.mvc.bind.annotation.JsonReturn;
 import org.apache.struts2.json.JSONException;
 import org.apache.struts2.json.JSONWriter;
 import org.springframework.core.MethodParameter;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageImpl;
 import org.springframework.http.MediaType;
 import org.springframework.http.converter.HttpMessageConverter;
 import org.springframework.http.converter.HttpMessageNotWritableException;
@@ -17,6 +19,7 @@ import org.springframework.web.servlet.mvc.method.annotation.RequestResponseBody
 
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
+import java.io.Serializable;
 import java.nio.charset.Charset;
 import java.util.ArrayList;
 import java.util.List;
@@ -44,6 +47,10 @@ public class JsonResultReturnHandler implements HandlerMethodReturnValueHandler 
                                   NativeWebRequest webRequest) throws IOException {
 
         try {
+            Object target = returnValue;
+            if (target != null && PageImpl.class.isAssignableFrom(target.getClass())) {
+                target = new PageResult((PageImpl) returnValue);
+            }
             mavContainer.setRequestHandled(true);
             ServletServerHttpResponse outputMessage = this.createOutputMessage(webRequest);
             MediaType mediaType = outputMessage.getHeaders().getContentType();
@@ -58,10 +65,10 @@ public class JsonResultReturnHandler implements HandlerMethodReturnValueHandler 
             JSONWriter writer = new JSONWriter();
             writer.setIgnoreHierarchy(false);
             writer.setEnumAsBean(false);
-            String json = writer.write(returnValue, excludeProperties, includeProperties, excludeNullProperties);
+            String json = writer.write(target, excludeProperties, includeProperties, excludeNullProperties);
             outputMessage.getServletResponse().setContentType(contentType);
             outputMessage.getBody().write(json.getBytes(encoding.getJavaName()));
-            outputMessage.flush();
+            outputMessage.getBody().flush();
         } catch (JSONException e) {
             throw new HttpMessageNotWritableException("JSON数据写入失败：序列化JSON数据出现异常！", e);
         } catch (Exception e) {
@@ -84,5 +91,21 @@ public class JsonResultReturnHandler implements HandlerMethodReturnValueHandler 
         }
 
         return JsonEncoding.UTF8;
+    }
+
+    public static class PageResult {
+        private PageImpl page;
+
+        public PageResult(PageImpl returnValue) {
+            this.page = returnValue;
+        }
+
+        public long getTotal() {
+            return page.getTotalElements();
+        }
+
+        public Object getContent() {
+            return page.getContent();
+        }
     }
 }
