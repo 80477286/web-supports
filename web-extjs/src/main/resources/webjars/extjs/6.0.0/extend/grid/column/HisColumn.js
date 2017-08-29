@@ -3,6 +3,6 @@
  */
 Ext.define('Extend.grid.column.HisColumn', {
             extend : 'Ext.grid.column.Date',
-            alias : 'widget.hiscolumn',
+            alias : ['widget.HisColumn', 'widget.hiscolumn'],
             format : 'H:i:s'
         })

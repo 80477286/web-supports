@@ -3,6 +3,6 @@
  */
 Ext.define('Extend.grid.column.YmdHiColumn', {
             extend : 'Ext.grid.column.Date',
-            alias : 'widget.ymdhicolumn',
+            alias : ['widget.YmdHiColumn', 'widget.ymdhicolumn'],
             format : 'Y-m-d H:i'
         })

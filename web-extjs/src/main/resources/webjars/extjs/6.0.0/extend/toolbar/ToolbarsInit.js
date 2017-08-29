@@ -10,13 +10,19 @@ Ext.define('Extend.toolbar.ToolbarsInit', {
                         {
                             this[dock] = null;
                             continue;
+                        } else
+                        {
+                            this[dock].tbfill = {
+                                xtype : 'tbfill',
+                                index : 0
+                            }
                         }
                         if (Ext.isObject(this[dock]) && !(this[dock] instanceof Ext.toolbar.Toolbar))
                         {
                             var btns = [], formated = [];
                             Ext.Object.each(this[dock], function(key, value)
                                     {
-                                        if (value.hidden !== true && Ext.isObject(value))
+                                        if (Ext.isObject(value))
                                         {
                                             value.action = value.action || key;
                                             value.iconCls = value.iconCls || key;
@@ -47,7 +53,7 @@ Ext.define('Extend.toolbar.ToolbarsInit', {
                                             formated.push(item);
                                         }
                                     })
-                            Ext.Array.insert(formated, 0, ['->'])
+                            // Ext.Array.insert(formated, 0, )
                             this[dock] = formated;
                         }
                     }

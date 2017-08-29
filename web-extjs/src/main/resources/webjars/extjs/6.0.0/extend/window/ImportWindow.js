@@ -57,45 +57,41 @@ Ext.define("Extend.window.ImportWindow", {
                             }
                         }];
                 me.callParent(arguments);
-                var items = [{
-                            xtype : 'panel',
-                            margin : 2,
-                            bodyStyle : 'border:1px solid #666;color:#666;padding:5px;line-height:20px;',
-                            html : me.message
-                        }, {
-                            xtype : 'filefield',
-                            fieldLabel : '数据文件',
-                            margin : '15 0 0 0',
-                            allowBlank : false,
-                            allowBlankText : '必须选择数据文件!',
-                            name : 'file',
-                            listeners : {
-                                change : function($this, value, eOpts)
-                                {
-                                    if (!Ext.isEmpty(value))
-                                    {
-                                        me.down('button[action="ok"]').enable();
-                                    } else
-                                    {
-                                        me.down('button[action="ok"]').disable();
-                                    }
-                                }
-                            }
-                        }]
-                if (!Ext.isEmpty(me.formItems))
-                {
-                    items = Ext.Array.insert(items, 2, me.formItems);
-                }
                 me.formPanel = Ext.create('Ext.form.Panel', {
                             region : 'center',
                             layout : 'column',
                             timeout : 10 * 60 * 1000,
                             defaults : {
                                 labelAlign : 'right',
-                                columnWidth : 1
+                                columnWidth : 1,
+                                margin : 5
                             },
                             bodyStyle : 'padding:10px;',
-                            items : items
+                            items : [{
+                                        xtype : 'panel',
+                                        margin : 2,
+                                        bodyStyle : 'border:1px solid #666;color:#666;padding:5px;line-height:20px;',
+                                        html : me.message
+                                    }, {
+                                        xtype : 'filefield',
+                                        fieldLabel : '数据文件',
+                                        allowBlank : false,
+                                        margin : '15 5 5 5',
+                                        allowBlankText : '必须选择数据文件!',
+                                        name : 'file',
+                                        listeners : {
+                                            change : function($this, value, eOpts)
+                                            {
+                                                if (!Ext.isEmpty(value))
+                                                {
+                                                    me.down('button[action="ok"]').enable();
+                                                } else
+                                                {
+                                                    me.down('button[action="ok"]').disable();
+                                                }
+                                            }
+                                        }
+                                    }]
                         });
                 me.add(me.formPanel);
                 me.on({

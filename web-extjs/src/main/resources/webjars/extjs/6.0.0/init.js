@@ -9,5 +9,11 @@ Ext.Loader.setConfig({
     }
 });
 Ext.state.Manager.setProvider(new Ext.state.LocalStorageProvider());
-Ext.require(['Extend.window.MessageBox', 'Extend.Utils']);
+Ext.require(['Extend.window.MessageBox', 'Extend.Utils', 'Extend.grid.column.BooleanColumn',
+    'Extend.grid.column.HisColumn', 'Extend.grid.column.YmdColumn',
+    'Extend.grid.column.YmdHiColumn',
+    'Extend.grid.column.YmdHisColumn',
+    'Extend.form.field.BooleanComboBox', 'Extend.form.field.GridField',
+    'Extend.form.field.CheckCombo', 'Extend.form.field.TreeComboBox',
+    'Extend.form.field.YmdDateField', 'Extend.form.field.MonthField']);
 Ext.tip.QuickTipManager.init();
