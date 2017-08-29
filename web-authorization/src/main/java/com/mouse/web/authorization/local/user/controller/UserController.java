@@ -27,17 +27,8 @@ public class UserController {
     @Autowired
     private IUserService userService;
 
-    @RequestMapping(value = "/user/all", method = RequestMethod.GET)
-    public List<User> all() {
-        List<User> users = userService.findAll();
-        for (User user : users) {
-            user.setResources(null);
-            user.setRoles(null);
-        }
-        return users;
-    }
 
-    @RequestMapping(value = "/user/save")
+    @RequestMapping(value = "/authorization/user/save")
     public User save(@EntityParam User user) {
         user.setPassword(new Md5PasswordEncoder().encodePassword(user.getPassword(), null));
         User result = userService.save(user);
@@ -45,7 +36,7 @@ public class UserController {
     }
 
 
-    @RequestMapping(value = "/user/query")
+    @RequestMapping(value = "/authorization/user/query")
     @JsonReturn(excludeProperties = ".*\\.roles")
     public Page<User> query(@MapParam Map<String, Object> params, @EntityParam PageParam pageable) {
         return userService.findAll(params, pageable);

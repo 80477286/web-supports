@@ -154,9 +154,7 @@ public class EnableWebMvcConfiguration extends DelegatingWebMvcConfiguration {
             this.beforeCustomReturnHandlers = new ArrayList<HandlerMethodReturnValueHandler>(0);
         }
 
-        List<HttpMessageConverter<?>> converters = new ArrayList<HttpMessageConverter<?>>(0);
-        converters.add(new JsonResultHttpMessageConverter());
-        this.beforeCustomReturnHandlers.add(new JsonResultReturnHandler(converters));
+        this.beforeCustomReturnHandlers.add(new JsonResultReturnHandler());
 
         if (beforeCustomReturnHandlers != null) {
             this.beforeCustomReturnHandlers.addAll(beforeCustomReturnHandlers);

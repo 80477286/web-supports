@@ -1,11 +1,15 @@
 package com.mouse.web.supports.mvc.returnhandler;
 
+import com.fasterxml.jackson.core.JsonEncoding;
+import com.fasterxml.jackson.core.JsonGenerator;
 import com.mouse.web.supports.mvc.bind.annotation.JsonReturn;
-import org.springframework.boot.json.JacksonJsonParser;
+import org.apache.struts2.json.JSONException;
+import org.apache.struts2.json.JSONWriter;
 import org.springframework.core.MethodParameter;
 import org.springframework.http.MediaType;
 import org.springframework.http.converter.HttpMessageConverter;
-import org.springframework.http.converter.json.MappingJackson2HttpMessageConverter;
+import org.springframework.http.converter.HttpMessageNotWritableException;
+import org.springframework.http.server.ServletServerHttpResponse;
 import org.springframework.web.context.request.NativeWebRequest;
 import org.springframework.web.method.support.HandlerMethodReturnValueHandler;
 import org.springframework.web.method.support.ModelAndViewContainer;
@@ -13,17 +17,16 @@ import org.springframework.web.servlet.mvc.method.annotation.RequestResponseBody
 
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
-import java.lang.annotation.Annotation;
-import java.util.Arrays;
+import java.nio.charset.Charset;
+import java.util.ArrayList;
 import java.util.List;
+import java.util.regex.Pattern;
 
 /**
  * Created by cwx183898 on 2017/8/18.
  */
-public class JsonResultReturnHandler extends RequestResponseBodyMethodProcessor {
-    public JsonResultReturnHandler(List<HttpMessageConverter<?>> converters) {
-        super(converters);
-    }
+public class JsonResultReturnHandler implements HandlerMethodReturnValueHandler {
+
 
     @Override
     public boolean supportsReturnType(MethodParameter returnType) {
@@ -31,17 +34,55 @@ public class JsonResultReturnHandler extends RequestResponseBodyMethodProcessor 
         return returnType.hasMethodAnnotation(JsonReturn.class);
     }
 
+    protected ServletServerHttpResponse createOutputMessage(NativeWebRequest webRequest) {
+        HttpServletResponse response = (HttpServletResponse) webRequest.getNativeResponse(HttpServletResponse.class);
+        return new ServletServerHttpResponse(response);
+    }
 
-//    @Override
-//    public void handleReturnValue(Object returnValue, MethodParameter returnType, ModelAndViewContainer mavContainer,
-//                                  NativeWebRequest webRequest) throws IOException {
-//// 设置这个就是最终的处理类了，处理完不再去找下一个类进行处理
-//        mavContainer.setRequestHandled(true);
-//
-//// 获得注解并执行filter方法 最后返回
-//        HttpServletResponse response = webRequest.getNativeResponse(HttpServletResponse.class);
-//
-//        response.setContentType(MediaType.APPLICATION_JSON_UTF8_VALUE);
-//        response.getWriter().write("{\"test\":\"a\"}");
-//    }
+    @Override
+    public void handleReturnValue(Object returnValue, MethodParameter returnType, ModelAndViewContainer mavContainer,
+                                  NativeWebRequest webRequest) throws IOException {
+
+        try {
+            mavContainer.setRequestHandled(true);
+            ServletServerHttpResponse outputMessage = this.createOutputMessage(webRequest);
+            MediaType mediaType = outputMessage.getHeaders().getContentType();
+            JsonEncoding encoding = this.getJsonEncoding(mediaType);
+            String contentType = "application/json";
+            if (encoding != null) {
+                contentType += ";charset=" + encoding.getJavaName();
+            }
+            boolean excludeNullProperties = false;
+            List<Pattern> includeProperties = new ArrayList<Pattern>(0);
+            List<Pattern> excludeProperties = new ArrayList<Pattern>(0);
+            JSONWriter writer = new JSONWriter();
+            writer.setIgnoreHierarchy(false);
+            writer.setEnumAsBean(false);
+            String json = writer.write(returnValue, excludeProperties, includeProperties, excludeNullProperties);
+            outputMessage.getServletResponse().setContentType(contentType);
+            outputMessage.getBody().write(json.getBytes(encoding.getJavaName()));
+            outputMessage.flush();
+        } catch (JSONException e) {
+            throw new HttpMessageNotWritableException("JSON数据写入失败：序列化JSON数据出现异常！", e);
+        } catch (Exception e) {
+            throw new HttpMessageNotWritableException("JSON数据写入失败： 处理过程中发生异常！", e);
+        }
+    }
+
+    protected JsonEncoding getJsonEncoding(MediaType contentType) {
+        if (contentType != null && contentType.getCharset() != null) {
+            Charset charset = contentType.getCharset();
+            JsonEncoding[] var3 = JsonEncoding.values();
+            int var4 = var3.length;
+
+            for (int var5 = 0; var5 < var4; ++var5) {
+                JsonEncoding encoding = var3[var5];
+                if (charset.name().equals(encoding.getJavaName())) {
+                    return encoding;
+                }
+            }
+        }
+
+        return JsonEncoding.UTF8;
+    }
 }
