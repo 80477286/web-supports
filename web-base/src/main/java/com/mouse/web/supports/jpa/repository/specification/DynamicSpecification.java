@@ -35,7 +35,13 @@ public class DynamicSpecification<T> implements Specification<T> {
         if (params != null) {
             Set<Map.Entry<String, Object>> entries = params.entrySet();
             for (Map.Entry<String, Object> entry : entries) {
-                Path<T> path = getPath(root, entry.getKey());
+                String key = entry.getKey();
+                int index = key.indexOf('_');
+                String fieldName = key;
+                if (index > 0) {
+                    fieldName = key.substring(0, index);
+                }
+                Path<T> path = getPath(root, fieldName);
                 predicate = cb.equal(path, entry.getValue());
             }
         }
