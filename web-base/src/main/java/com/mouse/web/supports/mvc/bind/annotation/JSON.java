@@ -8,6 +8,15 @@ import java.lang.annotation.*;
 @Target({ElementType.METHOD, ElementType.TYPE})
 @Retention(RetentionPolicy.RUNTIME)
 @Documented
-public @interface JsonReturn {
+public @interface JSON {
     public String[] excludeProperties() default {};
+
+    public String[] includeProperties() default {};
+
+    public boolean ignoreHierarchy() default false;
+
+    public boolean enumAsBean() default false;
+
+    public boolean excludeNullProperties() default false;
+
 }

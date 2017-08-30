@@ -4,8 +4,7 @@ import com.mouse.web.supports.mvc.argumentsresolver.EntityParamListMethodArgumen
 import com.mouse.web.supports.mvc.argumentsresolver.EntityParamMethodArgumentResolver;
 import com.mouse.web.supports.mvc.argumentsresolver.MapParamMethodArgumentResolver;
 import com.mouse.web.supports.mvc.autoconfigure.ExtendRequestMappingHandlerAdapter;
-import com.mouse.web.supports.mvc.converter.JsonResultHttpMessageConverter;
-import com.mouse.web.supports.mvc.returnhandler.JsonResultReturnHandler;
+import com.mouse.web.supports.mvc.returnhandler.JsonReturnHandler;
 import org.springframework.beans.factory.ListableBeanFactory;
 import org.springframework.beans.factory.NoSuchBeanDefinitionException;
 import org.springframework.beans.factory.ObjectProvider;
@@ -14,7 +13,6 @@ import org.springframework.boot.autoconfigure.web.WebMvcRegistrations;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.Primary;
-import org.springframework.http.converter.HttpMessageConverter;
 import org.springframework.util.ClassUtils;
 import org.springframework.validation.Validator;
 import org.springframework.web.bind.support.ConfigurableWebBindingInitializer;
@@ -154,7 +152,7 @@ public class EnableWebMvcConfiguration extends DelegatingWebMvcConfiguration {
             this.beforeCustomReturnHandlers = new ArrayList<HandlerMethodReturnValueHandler>(0);
         }
 
-        this.beforeCustomReturnHandlers.add(new JsonResultReturnHandler());
+        this.beforeCustomReturnHandlers.add(new JsonReturnHandler());
 
         if (beforeCustomReturnHandlers != null) {
             this.beforeCustomReturnHandlers.addAll(beforeCustomReturnHandlers);

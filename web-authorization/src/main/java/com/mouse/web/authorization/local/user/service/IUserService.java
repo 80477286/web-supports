@@ -18,4 +18,10 @@ public interface IUserService {
     List<User> findAll();
 
     Page<User> findAll(Map<String, Object> params, Pageable pageable);
+
+    User findById(String id);
+
+    boolean delete(String id);
+
+    boolean delete(String[] ids);
 }

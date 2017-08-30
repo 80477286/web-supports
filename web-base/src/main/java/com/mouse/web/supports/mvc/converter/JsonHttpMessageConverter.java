@@ -36,7 +36,7 @@ import java.util.regex.Pattern;
 /**
  * Created by cwx183898 on 2017/8/18.
  */
-public class JsonResultHttpMessageConverter extends MappingJackson2HttpMessageConverter {
+public class JsonHttpMessageConverter extends MappingJackson2HttpMessageConverter {
 
 
     @Override

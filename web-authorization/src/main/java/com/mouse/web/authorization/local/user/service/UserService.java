@@ -41,4 +41,25 @@ public class UserService implements IUserService {
     public Page<User> findAll(Map<String, Object> params, Pageable pageable) {
         return repository.findAll(params, pageable);
     }
+
+    @Override
+    public User findById(String id) {
+        return repository.findOne(id);
+    }
+
+    @Override
+    public boolean delete(String id) {
+        repository.delete(id);
+        return true;
+    }
+
+    @Override
+    public boolean delete(String[] ids) {
+        if (ids != null) {
+            for (String id : ids) {
+                repository.delete(id);
+            }
+        }
+        return true;
+    }
 }

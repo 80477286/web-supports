@@ -55,8 +55,6 @@ public class User extends BaseEntity {
     @JoinTable(name = "System_User_ref_Role", joinColumns = @JoinColumn(name = "user_id"), inverseJoinColumns = @JoinColumn(name = "role_id"))
     private List<Role> roles = new ArrayList<Role>(0);
 
-    @Transient
-    private List<Resource> resources;
 
     public User() {
     }
@@ -72,14 +70,6 @@ public class User extends BaseEntity {
         this.username = username;
         this.password = password;
         this.name = name;
-    }
-
-    public List<Resource> getResources() {
-        return resources;
-    }
-
-    public void setResources(List<Resource> resources) {
-        this.resources = resources;
     }
 
 
