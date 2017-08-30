@@ -1,27 +1,15 @@
 package com.mouse.web.authorization.local.user.service;
 
 import com.mouse.web.authorization.local.user.model.User;
-import org.springframework.data.domain.Page;
-import org.springframework.data.domain.Pageable;
-
-import java.util.List;
-import java.util.Map;
+import com.mouse.web.supports.jpa.service.IBaseService;
 
 /**
  * Created by cwx183898 on 2017/8/9.
  */
-public interface IUserService {
+public interface IUserService extends IBaseService<User, String> {
+
     User findByUsername(String username);
 
-    User save(User user);
+    void delete(String[] ids);
 
-    List<User> findAll();
-
-    Page<User> findAll(Map<String, Object> params, Pageable pageable);
-
-    User findById(String id);
-
-    boolean delete(String id);
-
-    boolean delete(String[] ids);
 }

@@ -77,7 +77,7 @@ public class UserControllerTester {
     // @WithMockUser(username = "fdsafd", roles = {"1", "2"})
     //@WithUserDetails("cwx183898")
     public void all() throws Exception {
-        ResultActions result = mockMvc.perform(MockMvcRequestBuilders.get("/user/all"));
+        ResultActions result = mockMvc.perform(MockMvcRequestBuilders.get("/authorization/user?all"));
         result.andExpect(MockMvcResultMatchers.status().isOk());
         result.andDo(MockMvcResultHandlers.print());//打印出请求和相应的内容
         result.andReturn().getResponse().getContentAsString();
@@ -97,7 +97,7 @@ public class UserControllerTester {
         params.add("user.creator", "creator");
         params.add("user.accountExpiringDate", "2019-09-09");
         params.add("user.credentialsExpiringDate", "2019-09-09");
-        MockHttpServletRequestBuilder builder = MockMvcRequestBuilders.post("/user/save");
+        MockHttpServletRequestBuilder builder = MockMvcRequestBuilders.post("/authorization/user?save");
         builder.params(params);
         builder.contentType(MediaType.APPLICATION_FORM_URLENCODED);
 
@@ -116,7 +116,7 @@ public class UserControllerTester {
         params.add("params.id", "1");
         params.add("pageable.size", "1");
         params.add("pageable.page", "0");
-        MockHttpServletRequestBuilder builder = MockMvcRequestBuilders.post("/user/query");
+        MockHttpServletRequestBuilder builder = MockMvcRequestBuilders.post("/authorization/user?query");
         builder.params(params);
         builder.contentType(MediaType.APPLICATION_FORM_URLENCODED);
 

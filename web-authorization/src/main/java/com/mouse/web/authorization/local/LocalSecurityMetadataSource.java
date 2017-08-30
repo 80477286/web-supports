@@ -41,7 +41,7 @@ public class LocalSecurityMetadataSource implements
     public Collection<ConfigAttribute> getAllConfigAttributes() {
         LOG.debug("获取资源列表:getAllConfigAttributes()");
         Collection<ConfigAttribute> configAttributes = new ArrayList<ConfigAttribute>();
-        List<Resource> resources = resourceService.findAll();
+        List<Resource> resources = resourceService.query();
         if (resources == null) {
             return configAttributes;
         }

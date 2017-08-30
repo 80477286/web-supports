@@ -2,64 +2,54 @@ package com.mouse.web.authorization.local.user.service;
 
 import com.mouse.web.authorization.local.user.model.User;
 import com.mouse.web.authorization.local.user.repository.UserRepository;
+import com.mouse.web.supports.jpa.repository.BaseRepository;
+import com.mouse.web.supports.jpa.service.BaseService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.domain.Page;
-import org.springframework.data.domain.Pageable;
+import org.springframework.security.authentication.encoding.Md5PasswordEncoder;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
-
-import java.util.List;
-import java.util.Map;
 
 /**
  * Created by cwx183898 on 2017/8/9.
  */
 @Service
 @Transactional
-public class UserService implements IUserService {
+public class UserService extends BaseService<User, String> implements IUserService {
     @Autowired
     private UserRepository repository;
+
+    @Override
+    public BaseRepository<User, String> getRepository() {
+        return repository;
+    }
 
     @Override
     public User findByUsername(String username) {
         return repository.findByUsername(username);
     }
 
-
     @Override
-    public User save(User user) {
-        User result = repository.save(user);
-        return result;
+    public <S extends User> S save(S entity) {
+        if (entity.getId() != null) {
+            User old = getRepository().findOne(entity.getId());
+            if (!entity.getPassword().equals(old.getPassword())) {
+                entity.setPassword(new Md5PasswordEncoder().encodePassword(entity.getPassword(), null));
+            }
+        }
+        if (entity.getCreator() == null) {
+            String creator = SecurityContextHolder.getContext().getAuthentication().getName();
+            entity.setCreator(creator);
+        }
+        return super.save(entity);
     }
 
     @Override
-    public List<User> findAll() {
-        return repository.findAll();
-    }
-
-    @Override
-    public Page<User> findAll(Map<String, Object> params, Pageable pageable) {
-        return repository.findAll(params, pageable);
-    }
-
-    @Override
-    public User findById(String id) {
-        return repository.findOne(id);
-    }
-
-    @Override
-    public boolean delete(String id) {
-        repository.delete(id);
-        return true;
-    }
-
-    @Override
-    public boolean delete(String[] ids) {
+    public void delete(String[] ids) {
         if (ids != null) {
             for (String id : ids) {
                 repository.delete(id);
             }
         }
-        return true;
     }
 }

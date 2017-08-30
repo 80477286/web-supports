@@ -67,7 +67,7 @@ public class UserServiceTester {
     public void findAll() {
         Map<String, Object> params = new HashMap<String, Object>(0);
         params.put("cdt", user.getCdt());
-        Page<User> page = userService.findAll(params, null);
+        Page<User> page = userService.query(params, null);
         Assert.assertEquals(page.getContent().size(), 1);
     }
 
@@ -76,7 +76,7 @@ public class UserServiceTester {
         PageRequest pageable = new PageRequest(0, 10);
         Map<String, Object> params = new HashMap<String, Object>(0);
         params.put("cdt", user.getCdt());
-        Page<User> page = userService.findAll(params, pageable);
+        Page<User> page = userService.query(params, pageable);
         Assert.assertEquals(page.getContent().size(), 1);
     }
 
@@ -87,7 +87,12 @@ public class UserServiceTester {
         PageRequest pageable = new PageRequest(0, 10, sort);
         Map<String, Object> params = new HashMap<String, Object>(0);
         params.put("cdt", user.getCdt());
-        Page<User> page = userService.findAll(params, pageable);
+        Page<User> page = userService.query(params, pageable);
         Assert.assertEquals(page.getContent().size(), 1);
+    }
+
+    @Test
+    public void deletes() {
+        userService.delete(new String[]{user.getId()});
     }
 }

@@ -50,6 +50,7 @@ public class WebLocalSecurityConfigurerAdapter extends WebSecurityConfigurationS
         return new Md5PasswordEncoder();
     }
 
+
     @Bean
     protected LocalUserDetailsService userDetailsService() {
         return new LocalUserDetailsService();
