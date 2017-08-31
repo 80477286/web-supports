@@ -55,6 +55,9 @@ public class User extends BaseEntity {
     @JoinTable(name = "System_User_ref_Role", joinColumns = @JoinColumn(name = "user_id"), inverseJoinColumns = @JoinColumn(name = "role_id"))
     private List<Role> roles = new ArrayList<Role>(0);
 
+    @OneToOne
+    @JoinTable(name = "System_User_ref_Test", joinColumns = @JoinColumn(name = "user_id"), inverseJoinColumns = @JoinColumn(name = "test_id"))
+    private Test test;
 
     public User() {
     }
