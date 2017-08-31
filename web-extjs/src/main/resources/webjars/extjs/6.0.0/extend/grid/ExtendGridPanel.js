@@ -30,6 +30,7 @@ Ext.define('Extend.grid.ExtendGridPanel', {
     minHeight: 95,
     sortableColumns: true,
     enableColumnMove: false,
+    rowLines: true,
     border: true,
     getExtraParams: Ext.emptyFn,
     config: {
