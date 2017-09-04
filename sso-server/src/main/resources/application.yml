@@ -1,0 +1,41 @@
+server:
+  port: 19001
+spring:
+  application:
+    name: oss-server
+  datasource:
+    url: jdbc:mysql://192.168.0.95:3306/wmp_wrmp?characterEncoding=utf8
+    username: root
+    password: root
+    driverClassName: com.mysql.jdbc.Driver
+# Specify the DBMS
+  jpa:
+   database: MYSQL
+# Show or not log for each sql query
+   show-sql: true
+# Hibernate ddl auto (create, create-drop, update)
+   hibernate:
+      ddl-auto: update
+      name-strategy: org.hibernate.cfg.improvedNamingStrategy
+# Naming strategy
+# stripped before adding them to the entity manager)
+   properties:
+     hibernate:
+        dialect: org.hibernate.dialect.MySQL5Dialect
+        cache:
+          use_second_level_cache: false
+          use_query_cache: false
+
+security:
+  oauth2:
+    client:
+      client-id: acmex
+      client-secret: acmesecretx
+      scope: read,write
+      auto-approve-scopes: '.*'
+    authorization:
+      check-token-access: permitAll()
+
+logging:
+  level:
+    org.springframework.security: DEBUG

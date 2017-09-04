@@ -1,0 +1,122 @@
+a {
+	color: rgb(255, 153, 51);
+	text-decoration: none;
+}
+
+a:HOVER {
+	color: rgb(255, 102, 0);
+}
+
+.x-toolbar-footer,.x-toolbar-default {
+	padding: 4px 0 4px 4px;
+}
+
+.x-window-header-default-top {
+	padding: 3px;
+}
+
+.x-column-header-inner {
+	padding: 5px 6px;
+}
+
+.x-menu-item-arrow-default {
+	margin-top: 5px;
+}
+
+.btn_home {
+	background-image: url("../images/btn_home.png") !important;
+	background-repeat: no-repeat;
+	background: rgb(21, 127, 204);
+	border: none;
+}
+
+.btn_config {
+	background-image: url("../images/btn_config.png") !important;
+	background-repeat: no-repeat;
+	background: rgb(21, 127, 204);
+	border: none;
+}
+
+.btn_sorftware {
+	background-image: url("../images/btn_software.png") !important;
+	background-repeat: no-repeat;
+	background: rgb(21, 127, 204);
+	border: none;
+}
+
+.btn_hardware {
+	background-image: url("../images/btn_hardware.png") !important;
+	background-repeat: no-repeat;
+	background: rgb(21, 127, 204);
+	border: none;
+}
+
+.btn_pico {
+	background-image: url("../images/btn_pico.png") !important;
+	background-repeat: no-repeat;
+}
+
+.btn_all {
+	background-image: url("../images/btn_all.png") !important;
+	background-repeat: no-repeat;
+	background: rgb(21, 127, 204);
+	border: none;
+}
+
+.btn_business_quality {
+	background-image: url("../images/btn_business_quality.png") !important;
+	background-repeat: no-repeat;
+	background: rgb(21, 127, 204);
+	border: none;
+}
+
+.btn_version_quality {
+	background-image: url("../images/btn_version_quality.png") !important;
+	background-repeat: no-repeat;
+	background: rgb(21, 127, 204);
+	border: none;
+}
+
+.btn_project_info {
+	background-image: url("../images/btn_project_info.png") !important;
+	background-repeat: no-repeat;
+	background: rgb(21, 127, 204);
+	border: none;
+}
+
+.btn_xiaolue {
+	background-image: url("../images/xiaolue.png") !important;
+	background-repeat: no-repeat;
+	background: rgb(21, 127, 204);
+	border: none;
+}
+
+.btn_quality_efficiency {
+	background-image: url("../images/btn_quality_efficiency.png") !important
+		;
+	background-repeat: no-repeat;
+	background: rgb(21, 127, 204);
+	border: none;
+}
+
+.btn_project_quality {
+	background-image: url("../images/btn_project_quality.png") !important;
+	background-repeat: no-repeat;
+	background: rgb(21, 127, 204);
+	border: none;
+}
+
+.btn_baseline {
+	background-image: url("../images/btn_baseline.png") !important;
+	background-repeat: no-repeat;
+	background: rgb(21, 127, 204);
+	border: none;
+}
+
+.x-column-header-text {
+	display: block;
+	overflow: hidden;
+	text-overflow: ellipsis;
+	white-space: normal;
+	word-wrap: break-word;
+}

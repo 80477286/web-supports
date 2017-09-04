@@ -1,0 +1,588 @@
+.x-tree-checkbox-half {
+	background-image: url("icons/checkbox-half.png") !important;
+}
+
+.preview {
+	background-image: url("icons/preview.gif") !important;
+	background-repeat: no-repeat;
+}
+
+.AddTaskBean {
+	background-image: url("icons/AddTaskBean.png") !important;
+	background-repeat: no-repeat;
+}
+
+.Report {
+	background-image: url("icons/Report.png") !important;
+	background-repeat: no-repeat;
+}
+
+.notrun {
+	background-image: url("icons/notrun.png") !important;
+	background-repeat: no-repeat;
+}
+
+.download {
+	background-image: url("icons/download.png") !important;
+	background-repeat: no-repeat;
+}
+
+.Group {
+	background-image: url("icons/Group.gif") !important;
+	background-repeat: no-repeat;
+}
+
+.Member {
+	background-image: url("icons/Member.png") !important;
+	background-repeat: no-repeat;
+}
+
+.check {
+	background-image: url("icons/check.gif") !important;
+	background-repeat: no-repeat;
+}
+
+.batch_modify {
+	background-image: url("icons/batch_modify.png") !important;
+	background-repeat: no-repeat;
+}
+
+.paste {
+	background-image: url("icons/paste.gif") !important;
+	background-repeat: no-repeat;
+}
+
+.collapse {
+	background-image: url("icons/collapse.png") !important;
+	background-repeat: no-repeat;
+}
+
+.expand {
+	background-image: url("icons/expand.png") !important;
+	background-repeat: no-repeat;
+}
+
+.folder_add {
+	background-image: url("icons/folder_add.png") !important;
+	background-repeat: no-repeat;
+}
+
+.BaselineVersion {
+	background-image: url("icons/BaselineVersion.gif") !important;
+	background-repeat: no-repeat;
+}
+
+.x-tree-icon-parent-expanded.Folder {
+	background-image: url("icons/FolderOpen.png") !important;
+	background-repeat: no-repeat;
+}
+
+.Folder {
+	background-image: url("icons/Folder.png") !important;
+	background-repeat: no-repeat;
+}
+
+.x-tree-icon-parent-expanded.Folder {
+	background-image: url("icons/FolderOpen.png") !important;
+	background-repeat: no-repeat;
+}
+
+.Folder1 {
+	background-image: url("icons/Folder1.png") !important;
+	background-repeat: no-repeat;
+}
+
+.x-tree-icon-parent-expanded.Folder1 {
+	background-image: url("icons/Folder1Open.png") !important;
+	background-repeat: no-repeat;
+}
+
+.Project {
+	background-image: url("icons/Project.png") !important;
+	background-repeat: no-repeat;
+}
+
+.CorestepFolder3 {
+	background-image: url("icons/CorestepFolder3.png") !important;
+	background-repeat: no-repeat;
+}
+
+.x-tree-icon-parent-expanded.CorestepFolder3 {
+	background-image: url("icons/CorestepFolder3Open.png") !important;
+	background-repeat: no-repeat;
+}
+
+.Corestep {
+	background-image: url("icons/Corestep.png") !important;
+	background-repeat: no-repeat;
+}
+
+.import {
+	background-image: url("icons/import.gif") !important;
+	background-repeat: no-repeat;
+}
+
+.Results {
+	background-image: url("icons/Results.png") !important;
+	background-repeat: no-repeat;
+}
+
+.export {
+	background-image: url("icons/export.gif") !important;
+	background-repeat: no-repeat;
+}
+
+.connect {
+	background-image: url("icons/connect.png") !important;
+	background-repeat: no-repeat;
+}
+
+.disconnect {
+	background-image: url("icons/disconnect.png") !important;
+	background-repeat: no-repeat;
+}
+
+.idle {
+	background-image: url("icons/idle.png") !important;
+	background-repeat: no-repeat;
+}
+
+.record {
+	background-image: url("icons/record.png") !important;
+	background-repeat: no-repeat;
+}
+
+.refresh {
+	background-image: url("icons/refresh.png") !important;
+	background-repeat: no-repeat;
+}
+
+.quickCreate,.quickAdd {
+	background-image: url("icons/quick_create.png") !important;
+	background-repeat: no-repeat;
+}
+
+.sync {
+	background-image: url("icons/sync.png") !important;
+	background-repeat: no-repeat;
+}
+
+.var {
+	background-image: url("icons/var.png") !important;
+	background-repeat: no-repeat;
+}
+
+.stop {
+	background-image: url("icons/stop.gif") !important;
+	background-repeat: no-repeat;
+}
+
+.up {
+	background-image: url("icons/up.png") !important;
+	background-repeat: no-repeat;
+}
+
+.down {
+	background-image: url("icons/down.png") !important;
+	background-repeat: no-repeat;
+}
+
+.edit {
+	background-image: url("icons/edit.png") !important;
+	background-repeat: no-repeat;
+}
+
+.put {
+	background-image: url("icons/put.png") !important;
+	background-repeat: no-repeat;
+}
+
+.site {
+	background-image: url("icons/site.gif") !important;
+	background-repeat: no-repeat;
+}
+
+.gtragent {
+	background-image: url("icons/gtragent.gif") !important;
+	background-repeat: no-repeat;
+}
+
+.script_code {
+	background-image: url("icons/script_code.png") !important;
+	background-repeat: no-repeat;
+	margin-top: 5px;
+}
+
+.start {
+	background-image: url("icons/play.png") !important;
+	background-repeat: no-repeat;
+}
+
+.play {
+	background-image: url("icons/play.png") !important;
+	background-repeat: no-repeat;
+}
+
+.script_start {
+	background-image: url("icons/script_start.gif") !important;
+	background-repeat: no-repeat;
+}
+
+.play {
+	background-image: url("icons/play.png") !important;
+	background-repeat: no-repeat;
+}
+
+.cross {
+	background-image: url("icons/cross.png") !important;
+	background-repeat: no-repeat;
+}
+
+.show {
+	background-image: url("icons/show.gif") !important;
+	background-repeat: no-repeat;
+}
+
+.delete,.remove {
+	background-image: url("icons/delete.png") !important;
+	background-repeat: no-repeat;
+}
+
+.add,.insert,.create {
+	background-image: url("icons/add.png") !important;
+	background-repeat: no-repeat;
+}
+
+.save {
+	background-image: url("icons/save.png") !important;
+	background-repeat: no-repeat;
+}
+
+.row_add {
+	background-image: url("icons/row_add.png") !important;
+	background-repeat: no-repeat;
+}
+
+.row_delete {
+	background-image: url("icons/row_delete.png") !important;
+	background-repeat: no-repeat;
+}
+
+.cancel {
+	background-image: url("icons/cancel.png") !important;
+	background-repeat: no-repeat;
+}
+
+.clear {
+	background-image: url("icons/eraser.png") !important;
+	background-repeat: no-repeat;
+}
+
+.reset {
+	background-image: url("icons/reset.png") !important;
+	background-repeat: no-repeat;
+}
+
+.advanced_search {
+	background-image: url("icons/advanced_search.png") !important;
+	background-repeat: no-repeat;
+}
+
+.search {
+	background-image: url("icons/search.png") !important;
+	background-repeat: no-repeat;
+}
+
+.lock_open {
+	background-image: url("icons/lock_open.png") !important;
+	background-repeat: no-repeat;
+}
+
+.lock_key {
+	background-image: url("icons/lock_key.png") !important;
+	background-repeat: no-repeat;
+}
+
+.ok {
+	background-image: url("icons/ok.png") !important;
+	background-repeat: no-repeat;
+}
+
+.home {
+	background-image: url("icons/home.png") !important;
+	background-repeat: no-repeat;
+}
+
+.key {
+	background-image: url("icons/key.png") !important;
+	background-repeat: no-repeat;
+}
+
+.table_edit {
+	background-image: url("icons/table_edit.png") !important;
+	background-repeat: no-repeat;;
+	margin-top: 5px;
+}
+
+.menu_system_configure {
+	background-image: url("icons/system_configure.png") !important;
+	background-repeat: no-repeat;
+}
+
+.menu_item_server_managument {
+	background-image: url("icons/server.png") !important;
+	background-repeat: no-repeat;
+	margin-top: 5px;
+}
+
+.menu_item_resource_managument {
+	background-image: url("icons/resources.png") !important;
+	background-repeat: no-repeat;
+	margin-top: 5px;
+}
+
+.menu_item_user_managument {
+	background-image: url("icons/user.png") !important;
+	background-repeat: no-repeat;
+	margin-top: 5px;
+}
+
+.menu_item_env_managument {
+	background-image: url("icons/env_managument.png") !important;
+	background-repeat: no-repeat;
+	margin-top: 5px;
+}
+
+.menu_item_biz_configuration {
+	background-image: url("icons/biz_configuration.png") !important;
+	background-repeat: no-repeat;
+	margin-top: 5px;
+}
+
+.menu_item_device_managument {
+	background-image: url("icons/device_managument.png") !important;
+	background-repeat: no-repeat;
+	margin-top: 5px;
+}
+
+.menu_item_bbu_managument {
+	background-image: url("icons/bbu_managument.png") !important;
+	background-repeat: no-repeat;
+	margin-top: 5px;
+}
+
+.menu_item_role_managument {
+	background-image: url("icons/role.png") !important;
+	background-repeat: no-repeat;
+	margin-top: 5px;
+}
+
+.menu_item_version_managument {
+	background-image: url("icons/museum_version.png") !important;
+	background-repeat: no-repeat;
+	margin-top: 5px;
+}
+
+.menu_item_var_managument {
+	background-image: url("icons/var.png") !important;
+	background-repeat: no-repeat;
+	margin-top: 5px;
+}
+
+.menu_item_authorization {
+	background-image: url("icons/authorization.png") !important;
+	background-repeat: no-repeat;
+	margin-top: 5px;
+}
+
+.menu_item_script_edit {
+	background-image: url("icons/script_edit.png") !important;
+	background-repeat: no-repeat;
+	margin-top: 5px;
+}
+
+.menu_item_test_managument {
+	background-image: url("icons/test_managument.png") !important;
+	background-repeat: no-repeat;
+	margin-top: 5px;
+}
+
+.menu_box_warning {
+	background-image: url("icons/box_warning.png") !important;
+	background-repeat: no-repeat;
+	margin-top: 5px;
+}
+
+.menu_world {
+	background-image: url("icons/menu_world.png") !important;
+	background-repeat: no-repeat;
+	margin-top: 5px;
+}
+
+.menu_tmss {
+	background-image: url("icons/menu_tmss.png") !important;
+	background-repeat: no-repeat;
+	margin-top: 5px;
+}
+
+.menu_item_testcase_split {
+	background-image: url("icons/testcase_split.png") !important;
+	background-repeat: no-repeat;
+	margin-top: 5px;
+}
+
+.menu_item_script_code_managument {
+	background-image: url("icons/script_code.png") !important;
+	background-repeat: no-repeat;
+	margin-top: 5px;
+}
+
+.menu_item_site_managument {
+	background-image: url("icons/site.gif") !important;
+	background-repeat: no-repeat;
+	margin-top: 5px;
+}
+
+.menu_item_actuator_manager {
+	background-image: url("icons/actuator_manager.png") !important;
+	background-repeat: no-repeat;
+	margin-top: 5px;
+}
+
+.menu_item_script_config_managument {
+	background-image: url("icons/script_config.png") !important;
+	background-repeat: no-repeat;
+	margin-top: 5px;
+}
+
+.menu_item_play_managument {
+	background-image: url("icons/play.png") !important;
+	background-repeat: no-repeat;
+	margin-top: 5px;
+}
+
+.menu_item_hutaf_service {
+	background-image: url("icons/hutaf_service.png") !important;
+	background-repeat: no-repeat;
+	margin-top: 5px;
+}
+
+.menu_execute_managument {
+	background-image: url("icons/execute_managument.png") !important;
+	background-repeat: no-repeat;
+	margin-top: 5px;
+}
+
+/**TMSS ICONS**/
+.TestCaseContainer {
+	background-image: url("icons/TestCaseContainer.png") !important;
+}
+
+.TestFolder {
+	background-image: url("icons/TestFolder.png") !important;
+	background-repeat: no-repeat;
+}
+
+.x-tree-icon-parent-expanded.TestFolder {
+	background-image: url("icons/TestFolderOpen.png") !important;
+	background-repeat: no-repeat;
+}
+
+.TestItem {
+	background-image: url("icons/TestItem.png") !important;
+	background-repeat: no-repeat;
+}
+
+.x-tree-icon-parent-expanded.TestItem {
+	background-image: url("icons/TestItemOpen.png") !important;
+	background-repeat: no-repeat;
+}
+
+.TestCase {
+	background-image: url("icons/TestCase.gif") !important;
+	background-repeat: no-repeat;
+}
+
+.TestCasePassed {
+	background-image: url("icons/TestCasePassed.gif") !important;
+	background-repeat: no-repeat;
+}
+
+.TestCaseBlocked {
+	background-image: url("icons/TestCaseBlocked.gif") !important;
+	background-repeat: no-repeat;
+}
+
+.TestCaseInvestigated {
+	background-image: url("icons/TestCaseInvestigated.gif") !important;
+	background-repeat: no-repeat;
+}
+
+.TestCaseUnavailable {
+	background-image: url("icons/TestCaseUnavailable.gif") !important;
+	background-repeat: no-repeat;
+}
+
+.TestCaseFailed {
+	background-image: url("icons/TestCaseFailed.gif") !important;
+	background-repeat: no-repeat;
+}
+
+.TestCaseAuto {
+	background-image: url("icons/TestCaseAuto.gif") !important;
+	background-repeat: no-repeat;
+}
+
+.TestCaseAutoPassed {
+	background-image: url("icons/TestCaseAutoPassed.gif") !important;
+	background-repeat: no-repeat;
+}
+
+.TestCaseAutoBlocked {
+	background-image: url("icons/TestCaseAutoBlocked.gif") !important;
+	background-repeat: no-repeat;
+}
+
+.TestCaseAutoInvestigated {
+	background-image: url("icons/TestCaseAutoInvestigated.gif") !important;
+	background-repeat: no-repeat;
+}
+
+.TestCaseAutoUnavailable {
+	background-image: url("icons/TestCaseAutoUnavailable.gif") !important;
+	background-repeat: no-repeat;
+}
+
+.TestCaseAutoFailed {
+	background-image: url("icons/TestCaseAutoFailed.gif") !important;
+	background-repeat: no-repeat;
+}
+
+.TaskContainer {
+	background-image: url("icons/TaskContainer.png") !important;
+}
+
+.TaskFolder {
+	background-image: url("icons/TaskFolder.png") !important;
+	background-repeat: no-repeat;
+}
+
+.Iterator {
+	background-image: url("icons/Iterator.png") !important;
+	background-repeat: no-repeat;
+}
+
+.Turn {
+	background-image: url("icons/Turn.png") !important;
+	background-repeat: no-repeat;
+}
+
+.x-tree-icon-parent-expanded.TaskFolder {
+	background-image: url("icons/TestFolderOpen.png") !important;
+	background-repeat: no-repeat;
+}
+
+.TaskBean {
+	background-image: url("icons/TaskBean.png") !important;
+	background-repeat: no-repeat;
+}

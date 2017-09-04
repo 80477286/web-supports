@@ -1,0 +1,19 @@
+server:
+  port: 18001
+
+eureka:
+  instance:
+    hostname: server-primary
+  server:
+    #是否打开服务器自我保护模式：
+    enableSelfPreservation: false
+    #此配置建议只试用开发和测试环境
+    #驱逐下线的服务，间隔,5秒，默认是60
+    victionIntervalTimerInMs: 5000
+
+logging:
+  level:
+    com:
+      netflix:
+        eureka: OFF
+        discovery: OFF
