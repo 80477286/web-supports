@@ -19,7 +19,7 @@ public class WebSecurityConfigurationSupports extends WebSecurityConfigurerAdapt
 
     @Override
     protected void configure(HttpSecurity http) throws Exception {
-        String[] matchers = (getPermits() == null || getPermits().trim().isEmpty()) ? new String[0] : getPermits().split("[,]]");
+        String[] matchers = (getPermits() == null || getPermits().trim().isEmpty()) ? new String[0] : getPermits().split("[,]");
         http.authorizeRequests()
                 //免验证地址
                 .antMatchers(matchers).permitAll()
