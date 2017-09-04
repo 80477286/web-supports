@@ -12,6 +12,7 @@
         <module>web-base</module>
         <module>ldap-local-example</module>
         <module>web-extjs</module>
+        <module>sso-server</module>
     </modules>
     <distributionManagement>
         <repository>
@@ -19,6 +20,37 @@
             <url>http://192.168.0.95:18080/nexus/content/repositories/releases/</url>
         </repository>
     </distributionManagement>
+
+    <parent>
+        <groupId>org.springframework.boot</groupId>
+        <artifactId>spring-boot-starter-parent</artifactId>
+        <version>1.5.2.RELEASE</version>
+    </parent>
+
+    <dependencies>
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-devtools</artifactId>
+            <version>1.5.2.RELEASE</version>
+        </dependency>
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-test</artifactId>
+            <version>1.5.2.RELEASE</version>
+        </dependency>
+        <dependency>
+            <groupId>org.springframework.security</groupId>
+            <artifactId>spring-security-test</artifactId>
+            <version>4.2.2.RELEASE</version>
+        </dependency>
+        <dependency>
+            <groupId>commons-logging</groupId>
+            <artifactId>commons-logging</artifactId>
+            <version>1.2</version>
+        </dependency>
+    </dependencies>
+
+
     <build>
         <plugins>
             <!-- 打包源代码为jar文件 -->

@@ -7,18 +7,22 @@
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
         <module name="ldap-local-example" />
+        <module name="sso-server" />
         <module name="web-authorization" />
         <module name="web-base" />
         <module name="web-extjs" />
+        <module name="wmp_cloud_server" />
       </profile>
     </annotationProcessing>
     <bytecodeTargetLevel>
       <module name="ldap-local-example" target="1.6" />
+      <module name="sso-server" target="1.6" />
       <module name="web-authorization" target="1.6" />
       <module name="web-base" target="1.6" />
       <module name="web-extjs" target="1.6" />
       <module name="web-supports" target="1.6" />
       <module name="webextjs" target="1.6" />
+      <module name="wmp_cloud_server" target="1.7" />
     </bytecodeTargetLevel>
   </component>
 </project>
