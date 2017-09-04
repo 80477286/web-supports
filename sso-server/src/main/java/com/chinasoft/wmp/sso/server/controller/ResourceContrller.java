@@ -37,7 +37,7 @@ public class ResourceContrller {
     @RequestMapping({"/resource/me"})
     public Map<String, Object> me(Principal principal) {
         OAuth2Authentication oa = (OAuth2Authentication) principal;
-        Map<String, Object> map = new LinkedHashMap<>();
+        Map<String, Object> map = new LinkedHashMap<String, Object>();
         map.put("name", oa.getName());
         map.put("authorities", oa.getUserAuthentication().getAuthorities());
         map.put("details", oa.getDetails());
