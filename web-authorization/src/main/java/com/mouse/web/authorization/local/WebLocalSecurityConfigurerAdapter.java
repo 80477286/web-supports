@@ -1,19 +1,17 @@
 package com.mouse.web.authorization.local;
 
-import com.mouse.web.authorization.configuration.WebSecurityConfigurationSupports;
+import com.mouse.web.authorization.configuration.BaseWebSecurityConfiguration;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
-import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.encoding.Md5PasswordEncoder;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
-import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
 import org.springframework.security.web.access.intercept.FilterSecurityInterceptor;
 
 /**
  * Created by cwx183898 on 2017/8/3.
  */
-public class WebLocalSecurityConfigurerAdapter extends WebSecurityConfigurationSupports {
+public class WebLocalSecurityConfigurerAdapter extends BaseWebSecurityConfiguration {
 
 
     @Autowired

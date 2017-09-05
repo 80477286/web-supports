@@ -1,16 +1,15 @@
 package com.mouse.web.authorization.ldap;
 
-import com.mouse.web.authorization.configuration.WebSecurityConfigurationSupports;
+import com.mouse.web.authorization.configuration.BaseWebSecurityConfiguration;
 import org.springframework.context.annotation.Bean;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
-import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
 import org.springframework.security.ldap.DefaultSpringSecurityContextSource;
 import org.springframework.security.ldap.authentication.LdapAuthenticationProvider;
 
 /**
  * Created by cwx183898 on 2017/8/3.
  */
-public class WebLdapSecurityConfigurerAdapter extends WebSecurityConfigurationSupports {
+public class WebLdapSecurityConfigurerAdapter extends BaseWebSecurityConfiguration {
     protected String searchBase = "ou=CorpUsers|ou=PartnerUsers";
     protected String searchFilter = "(samaccountname={0})";
     protected String providerUrl = "ldap://lggad05-dc/dc=china,dc=huawei,dc=com";

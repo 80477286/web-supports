@@ -1,23 +1,15 @@
 package com.mouse.web.authorization.ll;
 
-import com.mouse.web.authorization.configuration.WebSecurityConfigurationSupports;
+import com.mouse.web.authorization.configuration.BaseWebSecurityConfiguration;
 import com.mouse.web.authorization.ldap.WebLdapBindAuthenticator;
 import com.mouse.web.authorization.ldap.WebLdapUserSearchImpl;
 import com.mouse.web.authorization.local.LocalSecurityFilter;
-import com.mouse.web.authorization.local.LocalUserDetailsService;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.autoconfigure.domain.EntityScan;
 import org.springframework.context.annotation.Bean;
-import org.springframework.context.annotation.ComponentScan;
-import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
-import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
-import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
 import org.springframework.security.ldap.DefaultSpringSecurityContextSource;
 import org.springframework.security.ldap.authentication.LdapAuthenticationProvider;
-import org.springframework.security.ldap.authentication.UserDetailsServiceLdapAuthoritiesPopulator;
 import org.springframework.security.ldap.userdetails.LdapAuthoritiesPopulator;
 import org.springframework.security.web.access.intercept.FilterSecurityInterceptor;
 
@@ -28,7 +20,7 @@ import java.util.Arrays;
  * 使用LDAP过行密码验证，本地进行资源权限验证
  */
 
-public class WebLdapAndLocalSecurityConfigurerAdapter extends WebSecurityConfigurationSupports {
+public class WebLdapAndLocalSecurityConfigurerAdapter extends BaseWebSecurityConfiguration {
     private static final Log LOGGER = LogFactory.getLog(WebLdapAndLocalSecurityConfigurerAdapter.class);
     protected String searchBase = "ou=CorpUsers|ou=PartnerUsers";
     protected String searchFilter = "(samaccountname={0})";
