@@ -20,14 +20,14 @@ public class BaseController<T, ID extends Serializable> {
     }
 
     @JSON()
-    @RequestMapping(params = "save")
+    @RequestMapping(value = "/save")
     public T save(@EntityParam T user) {
         T result = getService().save(user);
         return result;
     }
 
     @JSON()
-    @RequestMapping(params = "get_by_id")
+    @RequestMapping(value = "/get_by_id")
     public T getById(ID id) {
         T result = getService().findOne(id);
         return result;
@@ -35,27 +35,27 @@ public class BaseController<T, ID extends Serializable> {
 
 
     @JSON()
-    @RequestMapping(params = "deletes")
+    @RequestMapping(value = "/deletes")
     public boolean delete(ID[] ids) {
         getService().delete(ids);
         return true;
     }
 
     @JSON()
-    @RequestMapping(params = "delete")
+    @RequestMapping(value = "/delete")
     public boolean delete(ID id) {
         getService().delete(id);
         return true;
     }
 
     @JSON()
-    @RequestMapping(params = "all")
+    @RequestMapping(value = "/all")
     public List<T> all() {
         return getService().query();
     }
 
     @JSON()
-    @RequestMapping(params = "query")
+    @RequestMapping(value = "/query")
     public Page<T> query(@MapParam Map<String, Object> params, @EntityParam PageParam pageable) {
         return getService().query(params, pageable);
     }
