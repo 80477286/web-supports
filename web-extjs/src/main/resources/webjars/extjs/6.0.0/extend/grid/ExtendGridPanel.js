@@ -229,11 +229,12 @@ Ext.define('Extend.grid.ExtendGridPanel', {
         var me = this;
         store.on({
             'beforeload': function (store, operation, eOpts) {
-                //修改默认分布参数名称
-                operation._proxy.setLimitParam('pageable.size')
-                operation._proxy.setPageParam("pageable.page")
                 //修改起始页，默认起始页为1
                 operation.setPage(operation.getPage() - 1)
+
+                //修改默认分布参数名称
+                operation._proxy.setStartParam("pageable.page")
+                operation._proxy.setLimitParam('pageable.size')
                 var eps = {};
                 if (!Ext.isEmpty(me.extraParams)
                     && !Ext.Object.isEmpty(me.extraParams)) {
