@@ -14,7 +14,7 @@ import org.springframework.security.config.annotation.web.configuration.WebSecur
 @EnableJpaRepositories(basePackages = "com.mouse.*")
 @EntityScan(basePackages = "com.mouse.*")
 @ComponentScan(basePackages = {"com.mouse.*"})
-public class WebSecurityConfigurationSupports extends WebSecurityConfigurerAdapter {
+public class BaseWebSecurityConfiguration extends WebSecurityConfigurerAdapter {
     protected String permits = "";
 
     @Override
