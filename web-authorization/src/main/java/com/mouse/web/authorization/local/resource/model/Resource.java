@@ -22,7 +22,7 @@ import java.util.List;
 @Entity
 @Cache(usage = CacheConcurrencyStrategy.READ_WRITE)
 @Table(name = "System_Resource", uniqueConstraints = {@UniqueConstraint(columnNames = {"name", "url"})})
-public class Resource extends BaseEntity implements ConfigAttribute {
+public class Resource extends BaseEntity {
     private static final long serialVersionUID = -4944044646898487415L;
 
     /**
@@ -95,26 +95,6 @@ public class Resource extends BaseEntity implements ConfigAttribute {
         this.getRoles().add(role);
     }
 
-    @Override
-    public boolean equals(Object obj) {
-        if (obj instanceof Resource) {
-            Resource data = (Resource) obj;
-            if (data.getId() != null && this.getId() != null) {
-                return data.getId().equals(this.getId());
-            }
-        }
-        return false;
-    }
-
-    @Override
-    public int hashCode() {
-        int hashCode = super.hashCode();
-        if (getId() != null) {
-            hashCode = getId().hashCode();
-        }
-        return hashCode;
-    }
-
     public String getUiid() {
         return uiid;
     }
@@ -123,8 +103,4 @@ public class Resource extends BaseEntity implements ConfigAttribute {
         this.uiid = uiid;
     }
 
-    @Override
-    public String getAttribute() {
-        return this.url;
-    }
 }

@@ -23,7 +23,7 @@ import java.util.List;
 @Entity
 @Cache(usage = CacheConcurrencyStrategy.READ_WRITE)
 @Table(name = "System_Role", uniqueConstraints = {@UniqueConstraint(columnNames = "name")})
-public class Role extends BaseEntity implements ConfigAttribute {
+public class Role extends BaseEntity {
     private static final long serialVersionUID = 2343635839703216816L;
 
 
@@ -88,28 +88,4 @@ public class Role extends BaseEntity implements ConfigAttribute {
         this.users = users;
     }
 
-    @Override
-    public boolean equals(Object obj) {
-        if (obj instanceof Role) {
-            Role data = (Role) obj;
-            if (data.getId() != null && this.getId() != null) {
-                return data.getId().equals(this.getId());
-            }
-        }
-        return false;
-    }
-
-    @Override
-    public int hashCode() {
-        int hashCode = super.hashCode();
-        if (getId() != null) {
-            hashCode = getId().hashCode();
-        }
-        return hashCode;
-    }
-
-    @Override
-    public String getAttribute() {
-        return name;
-    }
 }
