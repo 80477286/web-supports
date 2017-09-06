@@ -24,7 +24,7 @@ import java.util.regex.Pattern;
 /**
  * Created by cwx183898 on 2017/8/18.
  */
-public class JsonReturnHandler implements HandlerMethodReturnValueHandler {
+public class JsonHandlerMethodReturnValueHandler implements HandlerMethodReturnValueHandler {
 
 
     @Override

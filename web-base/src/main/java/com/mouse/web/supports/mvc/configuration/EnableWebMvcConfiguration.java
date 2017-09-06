@@ -4,7 +4,7 @@ import com.mouse.web.supports.mvc.argumentsresolver.EntityParamListMethodArgumen
 import com.mouse.web.supports.mvc.argumentsresolver.EntityParamMethodArgumentResolver;
 import com.mouse.web.supports.mvc.argumentsresolver.MapParamMethodArgumentResolver;
 import com.mouse.web.supports.mvc.autoconfigure.ExtendRequestMappingHandlerAdapter;
-import com.mouse.web.supports.mvc.returnhandler.JsonReturnHandler;
+import com.mouse.web.supports.mvc.returnhandler.JsonHandlerMethodReturnValueHandler;
 import org.springframework.beans.factory.ListableBeanFactory;
 import org.springframework.beans.factory.NoSuchBeanDefinitionException;
 import org.springframework.beans.factory.ObjectProvider;
@@ -152,7 +152,7 @@ public class EnableWebMvcConfiguration extends DelegatingWebMvcConfiguration {
             this.beforeCustomReturnHandlers = new ArrayList<HandlerMethodReturnValueHandler>(0);
         }
 
-        this.beforeCustomReturnHandlers.add(new JsonReturnHandler());
+        this.beforeCustomReturnHandlers.add(new JsonHandlerMethodReturnValueHandler());
 
         if (beforeCustomReturnHandlers != null) {
             this.beforeCustomReturnHandlers.addAll(beforeCustomReturnHandlers);
