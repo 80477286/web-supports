@@ -11,6 +11,7 @@
         <module name="web-authorization" />
         <module name="web-base" />
         <module name="web-extjs" />
+        <module name="web-security" />
         <module name="wmp_cloud_server" />
       </profile>
     </annotationProcessing>
@@ -20,6 +21,7 @@
       <module name="web-authorization" target="1.6" />
       <module name="web-base" target="1.6" />
       <module name="web-extjs" target="1.6" />
+      <module name="web-security" target="1.6" />
       <module name="web-supports" target="1.6" />
       <module name="webextjs" target="1.6" />
       <module name="wmp_cloud_server" target="1.7" />

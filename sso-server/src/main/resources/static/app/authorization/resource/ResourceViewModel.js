@@ -57,7 +57,7 @@ Ext.define('App.authorization.resource.ResourceViewModel', {
             }],
             proxy: {
                 type: 'majax',
-                url: '/authorization/resource?query',
+                url: '/authorization/resource/query',
                 reader: {
                     type: 'json',
                     rootProperty: 'data',

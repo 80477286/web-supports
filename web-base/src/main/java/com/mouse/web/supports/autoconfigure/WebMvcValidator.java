@@ -3,7 +3,7 @@
 // (powered by Fernflower decompiler)
 //
 
-package com.mouse.web.supports.mvc.configuration;
+package com.mouse.web.supports.autoconfigure;
 
 import org.springframework.beans.BeansException;
 import org.springframework.beans.factory.DisposableBean;

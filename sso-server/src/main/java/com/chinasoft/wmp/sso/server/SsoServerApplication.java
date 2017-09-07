@@ -15,16 +15,12 @@ package com.chinasoft.wmp.sso.server;
  * limitations under the License.
  */
 
-import com.mouse.web.supports.jpa.repository.RepositoryFactory;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
-import org.springframework.security.authentication.encoding.Md4PasswordEncoder;
-import org.springframework.security.authentication.encoding.Md5PasswordEncoder;
 
 
 @SpringBootApplication
-@EnableJpaRepositories(basePackages = "com.mouse", repositoryFactoryBeanClass = RepositoryFactory.class)
 public class SsoServerApplication {
 
     public static void main(String[] args) {

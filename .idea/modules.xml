@@ -7,6 +7,7 @@
       <module fileurl="file://$PROJECT_DIR$/web-authorization/web-authorization.iml" filepath="$PROJECT_DIR$/web-authorization/web-authorization.iml" />
       <module fileurl="file://$PROJECT_DIR$/web-base/web-base.iml" filepath="$PROJECT_DIR$/web-base/web-base.iml" />
       <module fileurl="file://$PROJECT_DIR$/web-extjs/web-extjs.iml" filepath="$PROJECT_DIR$/web-extjs/web-extjs.iml" />
+      <module fileurl="file://$PROJECT_DIR$/web-security/web-security.iml" filepath="$PROJECT_DIR$/web-security/web-security.iml" />
       <module fileurl="file://$PROJECT_DIR$/web-supports.iml" filepath="$PROJECT_DIR$/web-supports.iml" />
       <module fileurl="file://$PROJECT_DIR$/wmp_cloud_server/wmp_cloud_server.iml" filepath="$PROJECT_DIR$/wmp_cloud_server/wmp_cloud_server.iml" />
     </modules>

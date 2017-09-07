@@ -3,7 +3,7 @@
 // (powered by Fernflower decompiler)
 //
 
-package com.mouse.web.supports.mvc.configuration;
+package com.mouse.web.supports.autoconfigure;
 
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;

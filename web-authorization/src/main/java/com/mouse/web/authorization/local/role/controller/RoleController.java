@@ -33,20 +33,17 @@ public class RoleController extends BaseController<Role, String> {
     }
 
     @JSON(excludeProperties = "data.*\\.resources")
-    @RequestMapping(params = "save")
     public Role save(@EntityParam Role role) {
         return super.save(role);
     }
 
     @Override
     @JSON(excludeProperties = "data.*\\.resources\\.roles,data.*\\.users\\.roles")
-    @RequestMapping(params = "get_by_id")
     public Role getById(String id) {
         return super.getById(id);
     }
 
     @JSON(excludeProperties = "data.*\\.resources,data.*\\.users")
-    @RequestMapping(params = "query")
     public Page<Role> query(@MapParam Map<String, Object> params, @EntityParam PageParam pageable) {
         return super.query(params, pageable);
     }

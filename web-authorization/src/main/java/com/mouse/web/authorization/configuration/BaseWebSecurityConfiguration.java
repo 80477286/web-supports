@@ -1,5 +1,6 @@
 package com.mouse.web.authorization.configuration;
 
+import com.mouse.web.supports.jpa.repository.ExtendRepositoryFactory;
 import org.springframework.boot.autoconfigure.domain.EntityScan;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
@@ -11,9 +12,9 @@ import org.springframework.security.config.annotation.web.configuration.WebSecur
  */
 
 
-@EnableJpaRepositories(basePackages = "com.mouse.*")
-@EntityScan(basePackages = "com.mouse.*")
-@ComponentScan(basePackages = {"com.mouse.*"})
+@EnableJpaRepositories(basePackages = "com.mouse.web", repositoryFactoryBeanClass = ExtendRepositoryFactory.class)
+@EntityScan(basePackages = "com.mouse.web.authorization")
+@ComponentScan(basePackages = {"com.mouse.web.authorization"})
 public class BaseWebSecurityConfiguration extends WebSecurityConfigurerAdapter {
     protected String permits = "";
 

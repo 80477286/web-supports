@@ -1,10 +1,6 @@
-package com.mouse.web.supports.mvc.configuration;
+package com.mouse.web.supports.autoconfigure;
 
-import com.mouse.web.supports.mvc.argumentsresolver.EntityParamListMethodArgumentResolver;
-import com.mouse.web.supports.mvc.argumentsresolver.EntityParamMethodArgumentResolver;
-import com.mouse.web.supports.mvc.argumentsresolver.MapParamMethodArgumentResolver;
 import com.mouse.web.supports.mvc.autoconfigure.ExtendRequestMappingHandlerAdapter;
-import com.mouse.web.supports.mvc.returnhandler.JsonHandlerMethodReturnValueHandler;
 import org.springframework.beans.factory.ListableBeanFactory;
 import org.springframework.beans.factory.NoSuchBeanDefinitionException;
 import org.springframework.beans.factory.ObjectProvider;
@@ -12,12 +8,9 @@ import org.springframework.boot.autoconfigure.web.WebMvcProperties;
 import org.springframework.boot.autoconfigure.web.WebMvcRegistrations;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
-import org.springframework.context.annotation.Primary;
 import org.springframework.util.ClassUtils;
 import org.springframework.validation.Validator;
 import org.springframework.web.bind.support.ConfigurableWebBindingInitializer;
-import org.springframework.web.method.support.HandlerMethodArgumentResolver;
-import org.springframework.web.method.support.HandlerMethodReturnValueHandler;
 import org.springframework.web.servlet.HandlerExceptionResolver;
 import org.springframework.web.servlet.config.annotation.DelegatingWebMvcConfiguration;
 import org.springframework.web.servlet.handler.AbstractHandlerExceptionResolver;
@@ -25,7 +18,6 @@ import org.springframework.web.servlet.mvc.method.annotation.ExceptionHandlerExc
 import org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerAdapter;
 import org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerMapping;
 
-import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
 
@@ -37,11 +29,6 @@ public class EnableWebMvcConfiguration extends DelegatingWebMvcConfiguration {
     private final WebMvcProperties mvcProperties;
     private final ListableBeanFactory beanFactory;
     private final WebMvcRegistrations mvcRegistrations;
-    protected List<HandlerMethodArgumentResolver> beforeCustomArgumentResolvers;
-    protected List<HandlerMethodArgumentResolver> afterCustomArgumentResolvers;
-
-    protected List<HandlerMethodReturnValueHandler> beforeCustomReturnHandlers;
-    protected List<HandlerMethodReturnValueHandler> afterCustomReturnHandlers;
 
 
     public EnableWebMvcConfiguration(ObjectProvider<WebMvcProperties> mvcPropertiesProvider, ObjectProvider<WebMvcRegistrations> mvcRegistrationsProvider, ListableBeanFactory beanFactory) {
@@ -58,22 +45,13 @@ public class EnableWebMvcConfiguration extends DelegatingWebMvcConfiguration {
     }
 
     protected RequestMappingHandlerAdapter createRequestMappingHandlerAdapter() {
-        initBeforeCustomArgumentResolvers(null);
-        initAfterCustomArgumentResolvers(null);
-        initBeforeCustomReturnHandlers(null);
-        initAfterCustomReturnHandlers(null);
         if (this.mvcRegistrations != null && this.mvcRegistrations.getRequestMappingHandlerAdapter() != null) {
             return this.mvcRegistrations.getRequestMappingHandlerAdapter();
         } else {
-            return new ExtendRequestMappingHandlerAdapter(beforeCustomArgumentResolvers, afterCustomArgumentResolvers, beforeCustomReturnHandlers, afterCustomReturnHandlers);
+            return new ExtendRequestMappingHandlerAdapter();
         }
     }
 
-    @Bean
-    @Primary
-    public RequestMappingHandlerMapping requestMappingHandlerMapping() {
-        return super.requestMappingHandlerMapping();
-    }
 
     @Bean
     public Validator mvcValidator() {
@@ -115,48 +93,4 @@ public class EnableWebMvcConfiguration extends DelegatingWebMvcConfiguration {
 
     }
 
-    public void initAfterCustomArgumentResolvers(List<HandlerMethodArgumentResolver> afterCustomArgumentResolvers) {
-        if (this.afterCustomArgumentResolvers == null) {
-            this.afterCustomArgumentResolvers = new ArrayList<HandlerMethodArgumentResolver>(0);
-        }
-        if (afterCustomArgumentResolvers != null) {
-            this.afterCustomArgumentResolvers.addAll(afterCustomArgumentResolvers);
-        }
-    }
-
-    public void initBeforeCustomArgumentResolvers(List<HandlerMethodArgumentResolver> beforeCustomArgumentResolvers) {
-        if (this.beforeCustomArgumentResolvers == null) {
-            this.beforeCustomArgumentResolvers = new ArrayList<HandlerMethodArgumentResolver>(0);
-        }
-        this.beforeCustomArgumentResolvers.add(new EntityParamListMethodArgumentResolver());
-        this.beforeCustomArgumentResolvers.add(new EntityParamMethodArgumentResolver());
-        this.beforeCustomArgumentResolvers.add(new MapParamMethodArgumentResolver());
-
-        if (beforeCustomArgumentResolvers != null) {
-            this.beforeCustomArgumentResolvers.addAll(beforeCustomArgumentResolvers);
-        }
-    }
-
-
-    public void initAfterCustomReturnHandlers(List<HandlerMethodReturnValueHandler> afterCustomReturnHandlers) {
-        if (this.afterCustomReturnHandlers == null) {
-            this.afterCustomReturnHandlers = new ArrayList<HandlerMethodReturnValueHandler>(0);
-        }
-        if (afterCustomReturnHandlers != null) {
-            this.afterCustomReturnHandlers.addAll(afterCustomReturnHandlers);
-        }
-    }
-
-    public void initBeforeCustomReturnHandlers(List<HandlerMethodReturnValueHandler> beforeCustomReturnHandlers) {
-        if (this.beforeCustomReturnHandlers == null) {
-            this.beforeCustomReturnHandlers = new ArrayList<HandlerMethodReturnValueHandler>(0);
-        }
-
-        this.beforeCustomReturnHandlers.add(new JsonHandlerMethodReturnValueHandler());
-
-        if (beforeCustomReturnHandlers != null) {
-            this.beforeCustomReturnHandlers.addAll(beforeCustomReturnHandlers);
-        }
-    }
-    
 }

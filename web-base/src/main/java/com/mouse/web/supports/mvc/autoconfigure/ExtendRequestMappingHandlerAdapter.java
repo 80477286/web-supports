@@ -1,5 +1,9 @@
 package com.mouse.web.supports.mvc.autoconfigure;
 
+import com.mouse.web.supports.mvc.argumentsresolver.EntityParamListMethodArgumentResolver;
+import com.mouse.web.supports.mvc.argumentsresolver.EntityParamMethodArgumentResolver;
+import com.mouse.web.supports.mvc.argumentsresolver.MapParamMethodArgumentResolver;
+import com.mouse.web.supports.mvc.returnhandler.JsonHandlerMethodReturnValueHandler;
 import org.springframework.util.ReflectionUtils;
 import org.springframework.web.method.annotation.ModelAttributeMethodProcessor;
 import org.springframework.web.method.support.HandlerMethodArgumentResolver;
@@ -22,11 +26,7 @@ public class ExtendRequestMappingHandlerAdapter extends RequestMappingHandlerAda
     protected List<HandlerMethodReturnValueHandler> beforeCustomReturnHandlers;
     protected List<HandlerMethodReturnValueHandler> afterCustomReturnHandlers;
 
-    public ExtendRequestMappingHandlerAdapter(List<HandlerMethodArgumentResolver> beforeCustomArgumentResolvers, List<HandlerMethodArgumentResolver> afterCustomArgumentResolvers, List<HandlerMethodReturnValueHandler> beforeCustomReturnHandlers, List<HandlerMethodReturnValueHandler> afterCustomReturnHandlers) {
-        this.beforeCustomArgumentResolvers = beforeCustomArgumentResolvers;
-        this.afterCustomArgumentResolvers = afterCustomArgumentResolvers;
-        this.beforeCustomReturnHandlers = beforeCustomReturnHandlers;
-        this.afterCustomReturnHandlers = afterCustomReturnHandlers;
+    public ExtendRequestMappingHandlerAdapter() {
     }
 
     @Override
@@ -46,17 +46,8 @@ public class ExtendRequestMappingHandlerAdapter extends RequestMappingHandlerAda
         field = ReflectionUtils.findField(rc.getClass(), "returnValueHandlers");
         ReflectionUtils.makeAccessible(field);
         List<HandlerMethodReturnValueHandler> resolvers = (List<HandlerMethodReturnValueHandler>) ReflectionUtils.getField(field, rc);
-        if (beforeCustomReturnHandlers != null) {
-            for (int i = beforeCustomReturnHandlers.size() - 1; i >= 0; i--) {
-                HandlerMethodReturnValueHandler handler = beforeCustomReturnHandlers.get(i);
-                resolvers.add(0, handler);
-            }
-        }
-        if (afterCustomReturnHandlers != null) {
-            for (HandlerMethodReturnValueHandler handler : afterCustomReturnHandlers) {
-                resolvers.add(handler);
-            }
-        }
+
+        resolvers.add(0, new JsonHandlerMethodReturnValueHandler());
     }
 
     private void modifyArgumentResolvers() {
@@ -66,16 +57,9 @@ public class ExtendRequestMappingHandlerAdapter extends RequestMappingHandlerAda
         field = ReflectionUtils.findField(rc.getClass(), "argumentResolvers");
         ReflectionUtils.makeAccessible(field);
         List<HandlerMethodArgumentResolver> resolvers = (List<HandlerMethodArgumentResolver>) ReflectionUtils.getField(field, rc);
-        if (beforeCustomArgumentResolvers != null) {
-            for (int i = beforeCustomArgumentResolvers.size() - 1; i >= 0; i--) {
-                HandlerMethodArgumentResolver resolver = beforeCustomArgumentResolvers.get(i);
-                resolvers.add(0, resolver);
-            }
-        }
-        if (afterCustomArgumentResolvers != null) {
-            for (HandlerMethodArgumentResolver resolver : afterCustomArgumentResolvers) {
-                resolvers.add(resolver);
-            }
-        }
+
+        resolvers.add(0, new EntityParamListMethodArgumentResolver());
+        resolvers.add(0, new EntityParamMethodArgumentResolver());
+        resolvers.add(0, new MapParamMethodArgumentResolver());
     }
 }

@@ -19,8 +19,8 @@ Ext.define("App.authorization.role.view.RoleList", {
     },
     editor: {
         formClazz: 'App.authorization.role.view.RoleEditor',
-        save: '/authorization/role?save',
-        get: '/authorization/role?get_by_id',
-        del: '/authorization/role?delete'
+        save: '/authorization/role/save',
+        get: '/authorization/role/get_by_id',
+        del: '/authorization/role/delete'
     }
 });

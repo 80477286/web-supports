@@ -15,9 +15,9 @@ import java.io.Serializable;
  * Created by cwx183898 on 2017/08/157.
  */
 @NoRepositoryBean
-public class RepositoryFactory<R extends JpaRepository<T, I>, T,
+public class ExtendRepositoryFactory<R extends JpaRepository<T, I>, T,
         I extends Serializable> extends JpaRepositoryFactoryBean<R, T, I> {
-    public RepositoryFactory(Class<? extends R> repositoryInterface) {
+    public ExtendRepositoryFactory(Class<? extends R> repositoryInterface) {
         super(repositoryInterface);
     }
 

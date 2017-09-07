@@ -1,0 +1,6 @@
+# Auto Configure
+org.springframework.boot.autoconfigure.EnableAutoConfiguration=\
+com.mouse.web.supports.autoconfigure.EnableWebMvcConfiguration,\
+com.mouse.web.supports.autoconfigure.WebMvcAutoConfiguration,\
+com.mouse.web.supports.autoconfigure.EnableExtendRepositoryConfiguration
+  

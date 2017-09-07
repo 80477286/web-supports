@@ -13,6 +13,7 @@
         <module>ldap-local-example</module>
         <module>web-extjs</module>
         <module>sso-server</module>
+        <module>web-security</module>
     </modules>
     <distributionManagement>
         <repository>

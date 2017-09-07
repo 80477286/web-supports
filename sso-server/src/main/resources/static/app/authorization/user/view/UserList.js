@@ -18,9 +18,9 @@ Ext.define('App.authorization.user.view.UserList', {
     editor: {
         model: 'App.authorization.user.UserModel',
         formClazz: 'App.authorization.user.view.UserEditor',
-        save: 'authorization/user?save',
-        get: 'authorization/user?get_by_id',
-        del: 'authorization/user?delete',
+        save: 'authorization/user/save',
+        get: 'authorization/user/get_by_id',
+        del: 'authorization/user/delete',
         dataType: 'User'
     }
 });
