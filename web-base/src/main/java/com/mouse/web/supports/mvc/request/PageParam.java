@@ -28,6 +28,7 @@ public class PageParam extends PageRequest {
 
 
     public void setPage(int page) {
+        page = page - 1;
         Field field = ReflectionUtils.findField(this.getClass(), "page");
         ReflectionUtils.makeAccessible(field);
         ReflectionUtils.setField(field, this, page);
