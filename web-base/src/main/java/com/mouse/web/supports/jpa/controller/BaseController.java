@@ -21,8 +21,8 @@ public class BaseController<T, ID extends Serializable> {
 
     @JSON()
     @RequestMapping(value = "/save")
-    public T save(@EntityParam T user) {
-        T result = getService().save(user);
+    public T save(@EntityParam T entity) {
+        T result = getService().save(entity);
         return result;
     }
 
@@ -36,7 +36,7 @@ public class BaseController<T, ID extends Serializable> {
 
     @JSON()
     @RequestMapping(value = "/deletes")
-    public boolean delete(ID[] ids) {
+    public boolean deletes(ID[] ids) {
         getService().delete(ids);
         return true;
     }
