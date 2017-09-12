@@ -31,6 +31,6 @@ public class BaseWebSecurityConfiguration extends WebSecurityConfigurerAdapter {
     }
 
     public String getPermits() {
-        return permits;
+        return this.permits;
     }
 }
