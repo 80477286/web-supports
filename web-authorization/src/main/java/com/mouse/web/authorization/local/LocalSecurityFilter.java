@@ -5,6 +5,7 @@ import org.springframework.security.access.SecurityMetadataSource;
 import org.springframework.security.access.intercept.AbstractSecurityInterceptor;
 import org.springframework.security.access.intercept.InterceptorStatusToken;
 import org.springframework.security.web.FilterInvocation;
+import org.springframework.security.web.access.intercept.FilterInvocationSecurityMetadataSource;
 import org.springframework.stereotype.Service;
 
 import javax.annotation.PostConstruct;
@@ -15,52 +16,48 @@ import java.io.IOException;
 @Service
 public class LocalSecurityFilter extends AbstractSecurityInterceptor implements Filter {
 
-    @Autowired
-    private LocalSecurityMetadataSource securityMetadataSource;
+    private FilterInvocationSecurityMetadataSource securityMetadataSource;
 
-
-    @Autowired
-    private LocalAccessDecisionManager accessDecisionManager;
-
-
-    @PostConstruct
-    public void init() {
-        super.setAccessDecisionManager(accessDecisionManager);
-    }
-
-    public void doFilter(ServletRequest request, ServletResponse response, FilterChain chain)
-            throws IOException, ServletException {
-        FilterInvocation fi = new FilterInvocation(request, response, chain);
-        invoke(fi);
-
-    }
-
-
-    public Class<? extends Object> getSecureObjectClass() {
-        return FilterInvocation.class;
-    }
-
-
-    public void invoke(FilterInvocation fi) throws IOException, ServletException {
-        InterceptorStatusToken token = super.beforeInvocation(fi);
-        try {
-            fi.getChain().doFilter(fi.getRequest(), fi.getResponse());
-        } finally {
-            super.afterInvocation(token, null);
-        }
-
-    }
-
-
-    @Override
-    public SecurityMetadataSource obtainSecurityMetadataSource() {
-        return this.securityMetadataSource;
+    public void init(FilterConfig arg0) throws ServletException {
     }
 
     public void destroy() {
     }
 
-    public void init(FilterConfig filterconfig) throws ServletException {
+    public void doFilter(ServletRequest request, ServletResponse response,
+                         FilterChain chain) throws IOException, ServletException {
 
+        FilterInvocation fileInvocation = new FilterInvocation(request, response, chain);
+        invoke(fileInvocation);
     }
+
+    public void invoke(FilterInvocation fi) throws IOException, ServletException {
+
+        InterceptorStatusToken token = super.beforeInvocation(fi);
+
+        try {
+            fi.getChain().doFilter(fi.getRequest(), fi.getResponse());
+        } finally {
+            super.finallyInvocation(token);
+        }
+
+        super.afterInvocation(token, null);
+    }
+
+    public FilterInvocationSecurityMetadataSource getSecurityMetadataSource() {
+        return this.securityMetadataSource;
+    }
+
+    public SecurityMetadataSource obtainSecurityMetadataSource() {
+        return this.securityMetadataSource;
+    }
+
+    public void setSecurityMetadataSource(FilterInvocationSecurityMetadataSource newSource) {
+        this.securityMetadataSource = newSource;
+    }
+
+    public Class<?> getSecureObjectClass() {
+        return FilterInvocation.class;
+    }
+
 }

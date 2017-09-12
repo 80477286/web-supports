@@ -55,8 +55,8 @@ public class WebLocalSecurityConfigurerAdapter extends BaseWebSecurityConfigurat
     }
 
     @Bean
-    public FilterSecurityInterceptor filterSecurityInterceptor() {
-        FilterSecurityInterceptor fsi = new FilterSecurityInterceptor();
+    public LocalSecurityFilter filterSecurityInterceptor() {
+        LocalSecurityFilter fsi = new LocalSecurityFilter();
         fsi.setSecurityMetadataSource(securityMetadataSource);
         fsi.setAccessDecisionManager(accessDecisionManager);
         return fsi;
