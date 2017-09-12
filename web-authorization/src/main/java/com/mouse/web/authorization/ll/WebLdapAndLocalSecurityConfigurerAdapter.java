@@ -31,7 +31,7 @@ public class WebLdapAndLocalSecurityConfigurerAdapter extends BaseWebSecurityCon
     protected void configure(HttpSecurity http) throws Exception {
         String[] matchers = (getPermits() == null || getPermits().trim().isEmpty()) ? new String[0] : getPermits().split("[,]");
         LOGGER.info("自定义免验证地址列表：" + Arrays.toString(matchers));
-        http.authenticationProvider(getAuthenticationProvider()).addFilterBefore(localSecurityFilter(), FilterSecurityInterceptor.class)
+        http.authenticationProvider(getAuthenticationProvider())
                 .authorizeRequests()
                 //免验证地址
                 .antMatchers(matchers).permitAll()

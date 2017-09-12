@@ -13,15 +13,15 @@ import org.springframework.security.web.access.intercept.FilterSecurityIntercept
  */
 public class WebLocalSecurityConfigurerAdapter extends BaseWebSecurityConfiguration {
 
-
     @Autowired
-    protected LocalSecurityFilter filter;
-
+    private LocalSecurityMetadataSource securityMetadataSource;
+    @Autowired
+    private LocalAccessDecisionManager accessDecisionManager;
 
     @Override
     protected void configure(HttpSecurity http) throws Exception {
         String[] matchers = (getPermits() == null || getPermits().trim().isEmpty()) ? new String[0] : getPermits().split("[,]");
-        http.addFilterBefore(filter, FilterSecurityInterceptor.class)
+        http
                 .authorizeRequests()
                 //免验证地址
                 .antMatchers(matchers).permitAll()
@@ -53,4 +53,13 @@ public class WebLocalSecurityConfigurerAdapter extends BaseWebSecurityConfigurat
     protected LocalUserDetailsService userDetailsService() {
         return new LocalUserDetailsService();
     }
+
+    @Bean
+    public FilterSecurityInterceptor filterSecurityInterceptor() {
+        FilterSecurityInterceptor fsi = new FilterSecurityInterceptor();
+        fsi.setSecurityMetadataSource(securityMetadataSource);
+        fsi.setAccessDecisionManager(accessDecisionManager);
+        return fsi;
+    }
+
 }

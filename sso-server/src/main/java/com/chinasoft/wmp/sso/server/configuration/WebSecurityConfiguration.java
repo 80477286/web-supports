@@ -28,7 +28,6 @@ public class WebSecurityConfiguration extends WebLocalSecurityConfigurerAdapter 
         String permits = this.getPermits();
         String[] matchers = StringUtils.isEmpty(permits) ? new String[0] : getPermits().split("[,]");
         LOGGER.info("自定义免验证地址列表：" + Arrays.toString(matchers));
-        http.addFilterBefore(filter, FilterSecurityInterceptor.class);
 
         http.authorizeRequests().antMatchers(matchers).permitAll();
         http.authorizeRequests().anyRequest().authenticated();

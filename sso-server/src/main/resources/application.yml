@@ -1,8 +1,22 @@
 server:
   port: 19001
+
+
+eureka:
+  client:
+      service-url:
+        defaultZone: http://192.168.0.95:18001/eureka
+  instance:
+    #此配置建议只试用开发和测试环境
+    #心跳间隔时间,默认是30秒
+    leaseRenewalIntervalInSeconds: 1
+    #最后一次心跳时间后leaseExpirationDurationInSeconds秒就认为是下线了，默认是90秒
+    leaseExpirationDurationInSeconds: 2
+    preferIpAddress: true
+
 spring:
   application:
-    name: oss-server
+    name: sso-server
   datasource:
     url: jdbc:mysql://192.168.0.95:3306/wmp_wrmp?characterEncoding=utf8
     username: root
