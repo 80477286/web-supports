@@ -5,6 +5,7 @@ import com.mouse.web.authorization.local.resource.service.IResourceService;
 import com.mouse.web.authorization.local.role.model.Role;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.access.ConfigAttribute;
+import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.oauth2.provider.OAuth2Authentication;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -35,13 +36,16 @@ public class ResourceContrller {
     }
 
     @RequestMapping({"/resource/me"})
-    public Map<String, Object> me(Principal principal) {
-        OAuth2Authentication oa = (OAuth2Authentication) principal;
-        Map<String, Object> map = new LinkedHashMap<String, Object>();
-        map.put("name", oa.getName());
-        map.put("authorities", oa.getUserAuthentication().getAuthorities());
-        map.put("details", oa.getDetails());
+    public Object me(Principal principal) {
+        Map<String, Object> map = new LinkedHashMap<String, Object>(3);
+        map.put("name", principal.getName());
+        if (principal instanceof OAuth2Authentication) {
+            OAuth2Authentication oa = (OAuth2Authentication) principal;
+            map.put("authorities", oa.getAuthorities());
+            // map.put("userAuthentication", oa.getUserAuthentication());
+            map.put("details", oa.getUserAuthentication().getDetails());
+            return oa.getUserAuthentication();
+        }
         return map;
     }
-
 }

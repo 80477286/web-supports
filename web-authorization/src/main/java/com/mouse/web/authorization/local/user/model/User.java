@@ -149,25 +149,4 @@ public class User extends BaseEntity {
         }
         this.getRoles().add(role);
     }
-
-    @Override
-    public boolean equals(Object obj) {
-        if (obj instanceof User) {
-            User data = (User) obj;
-            if (data.getId() != null && this.getId() != null) {
-                return data.getId().equals(this.getId());
-            }
-        }
-        return false;
-    }
-
-    @Override
-    public int hashCode() {
-        int hashCode = super.hashCode();
-        if (getId() != null) {
-            hashCode = getId().hashCode();
-        }
-        return hashCode;
-    }
-
 }

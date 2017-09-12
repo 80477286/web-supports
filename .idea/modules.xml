@@ -6,6 +6,7 @@
       <module fileurl="file://$PROJECT_DIR$/sso-server/sso-server.iml" filepath="$PROJECT_DIR$/sso-server/sso-server.iml" />
       <module fileurl="file://$PROJECT_DIR$/web-authorization/web-authorization.iml" filepath="$PROJECT_DIR$/web-authorization/web-authorization.iml" />
       <module fileurl="file://$PROJECT_DIR$/web-base/web-base.iml" filepath="$PROJECT_DIR$/web-base/web-base.iml" />
+      <module fileurl="file://$PROJECT_DIR$/web-cloud-supports/web-cloud-supports.iml" filepath="$PROJECT_DIR$/web-cloud-supports/web-cloud-supports.iml" />
       <module fileurl="file://$PROJECT_DIR$/web-extjs/web-extjs.iml" filepath="$PROJECT_DIR$/web-extjs/web-extjs.iml" />
       <module fileurl="file://$PROJECT_DIR$/web-security/web-security.iml" filepath="$PROJECT_DIR$/web-security/web-security.iml" />
       <module fileurl="file://$PROJECT_DIR$/web-supports.iml" filepath="$PROJECT_DIR$/web-supports.iml" />

@@ -10,6 +10,7 @@
         <module name="sso-server" />
         <module name="web-authorization" />
         <module name="web-base" />
+        <module name="web-cloud-supports" />
         <module name="web-extjs" />
         <module name="web-security" />
         <module name="wmp_cloud_server" />
@@ -20,11 +21,12 @@
       <module name="sso-server" target="1.6" />
       <module name="web-authorization" target="1.6" />
       <module name="web-base" target="1.6" />
+      <module name="web-cloud-supports" target="1.6" />
       <module name="web-extjs" target="1.6" />
       <module name="web-security" target="1.6" />
       <module name="web-supports" target="1.6" />
       <module name="webextjs" target="1.6" />
-      <module name="wmp_cloud_server" target="1.7" />
+      <module name="wmp_cloud_server" target="1.6" />
     </bytecodeTargetLevel>
   </component>
 </project>
