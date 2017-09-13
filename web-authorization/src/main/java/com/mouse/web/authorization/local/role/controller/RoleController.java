@@ -22,7 +22,7 @@ import java.util.Map;
  * Created by cwx183898 on 2017/8/10.
  */
 @RestController
-@RequestMapping("/authorization/role")
+@RequestMapping({"/authorization/role", "/api/authorization/role"})
 public class RoleController extends BaseController<Role, String> {
     @Autowired
     private IRoleService roleService;

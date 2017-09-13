@@ -19,7 +19,7 @@ import java.util.Map;
  * Created by cwx183898 on 2017/8/10.
  */
 @RestController
-@RequestMapping("/authorization/resource")
+@RequestMapping({"/authorization/resource", "/api/authorization/resource"})
 public class ResourceController extends BaseController<Resource, String> {
     @Autowired
     private IResourceService resourceService;
