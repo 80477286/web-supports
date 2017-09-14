@@ -16,12 +16,24 @@ import java.io.IOException;
 @Service
 public class LocalSecurityFilter extends AbstractSecurityInterceptor implements Filter {
 
-    private FilterInvocationSecurityMetadataSource securityMetadataSource;
 
-    public void init(FilterConfig arg0) throws ServletException {
+    @Autowired
+    private LocalSecurityMetadataSource securityMetadataSource;
+
+    @Autowired
+    private LocalAccessDecisionManager accessDecisionManager;
+
+    @PostConstruct
+    public void init() {
+        super.setAccessDecisionManager(accessDecisionManager);
     }
 
     public void destroy() {
+    }
+
+    @Override
+    public void init(FilterConfig filterConfig) throws ServletException {
+
     }
 
     public void doFilter(ServletRequest request, ServletResponse response,
@@ -52,9 +64,6 @@ public class LocalSecurityFilter extends AbstractSecurityInterceptor implements 
         return this.securityMetadataSource;
     }
 
-    public void setSecurityMetadataSource(FilterInvocationSecurityMetadataSource newSource) {
-        this.securityMetadataSource = newSource;
-    }
 
     public Class<?> getSecureObjectClass() {
         return FilterInvocation.class;

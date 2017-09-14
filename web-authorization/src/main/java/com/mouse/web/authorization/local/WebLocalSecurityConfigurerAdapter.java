@@ -13,10 +13,6 @@ import org.springframework.security.web.access.intercept.FilterSecurityIntercept
  */
 public class WebLocalSecurityConfigurerAdapter extends BaseWebSecurityConfiguration {
 
-    @Autowired
-    private LocalSecurityMetadataSource securityMetadataSource;
-    @Autowired
-    private LocalAccessDecisionManager accessDecisionManager;
 
     @Override
     protected void configure(HttpSecurity http) throws Exception {
@@ -57,8 +53,6 @@ public class WebLocalSecurityConfigurerAdapter extends BaseWebSecurityConfigurat
     @Bean
     public LocalSecurityFilter filterSecurityInterceptor() {
         LocalSecurityFilter fsi = new LocalSecurityFilter();
-        fsi.setSecurityMetadataSource(securityMetadataSource);
-        fsi.setAccessDecisionManager(accessDecisionManager);
         return fsi;
     }
 
