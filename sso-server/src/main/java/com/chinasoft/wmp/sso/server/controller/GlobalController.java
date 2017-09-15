@@ -1,6 +1,7 @@
 package com.chinasoft.wmp.sso.server.controller;
 
 import com.mouse.web.authorization.local.user.model.User;
+import com.mouse.web.supports.mvc.bind.annotation.JSON;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
@@ -28,9 +29,12 @@ public class GlobalController {
 
     @RequestMapping("/get_current_user")
     @ResponseBody
+    @JSON
     public Map<String, Object> getCurrentUser(Principal principal) {
         Map<String, Object> data = new HashMap<String, Object>(0);
         UserDetails user = (UserDetails) ((UsernamePasswordAuthenticationToken) principal).getPrincipal();
+
+        data.put("name", principal.getName());
         data.put("username", user.getUsername());
         data.put("authorities", user.getAuthorities());
         data.put("accountNonExpired", user.isAccountNonExpired());
@@ -42,6 +46,7 @@ public class GlobalController {
 
     @RequestMapping("/get_localhost")
     @ResponseBody
+    @JSON
     public String getLocalhost(HttpServletRequest request) {
         return request.getRemoteAddr();
     }
