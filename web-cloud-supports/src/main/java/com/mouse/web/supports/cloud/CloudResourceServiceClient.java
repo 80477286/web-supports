@@ -38,10 +38,10 @@ public class CloudResourceServiceClient {
     private OAuth2ClientContext clientContext;
 
     @NestedConfigurationProperty
-    private AuthorizationCodeResourceDetails resource = new AuthorizationCodeResourceDetails();
+    private AuthorizationCodeResourceDetails client = new AuthorizationCodeResourceDetails();
 
     @Autowired
-    private DiscoveryClient client;
+    private DiscoveryClient discoveryClient;
 
     protected void init() {
         List messageConverters = new ArrayList();
@@ -64,7 +64,7 @@ public class CloudResourceServiceClient {
 
     @Bean
     public OAuth2RestTemplate restTemplate() {
-        OAuth2RestTemplate restTemplate = new OAuth2RestTemplate(resource, clientContext);
+        OAuth2RestTemplate restTemplate = new OAuth2RestTemplate(client, clientContext);
         List messageConverters = new ArrayList();
         messageConverters.add(new SourceHttpMessageConverter());
         messageConverters.add(new FormHttpMessageConverter());
@@ -74,7 +74,7 @@ public class CloudResourceServiceClient {
     }
 
     private String getServerUri(String serverId) {
-        List<ServiceInstance> instances = client.getInstances(serverId);
+        List<ServiceInstance> instances = discoveryClient.getInstances(serverId);
         if (instances != null && !instances.isEmpty()) {
             ServiceInstance instance = instances.get(0);
             URI uri = instance.getUri();
@@ -83,7 +83,7 @@ public class CloudResourceServiceClient {
         return null;
     }
 
-    public OAuth2ProtectedResourceDetails getResource() {
-        return resource;
+    public OAuth2ProtectedResourceDetails getClient() {
+        return client;
     }
 }

@@ -12,6 +12,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 import java.security.Principal;
 import java.util.HashMap;
 import java.util.LinkedHashMap;
@@ -40,7 +42,7 @@ public class GlobalController {
 
     @RequestMapping("/get_localhost")
     @ResponseBody
-    public String getLocalhost() {
-        return "192.168.1.13";
+    public String getLocalhost(HttpServletRequest request) {
+        return request.getRemoteAddr();
     }
 }

@@ -1,5 +1,5 @@
 server:
-  port: 19001
+  port: 19000
 
 
 eureka:
@@ -18,7 +18,7 @@ spring:
   application:
     name: sso-server
   datasource:
-    url: jdbc:mysql://192.168.0.95:3306/wmp_wrmp?characterEncoding=utf8
+    url: jdbc:mysql://192.168.0.95:3306/SSO_SERVER_DB?characterEncoding=utf8
     username: root
     password: root
     driverClassName: com.mysql.jdbc.Driver
@@ -43,8 +43,8 @@ spring:
 security:
   oauth2:
     client:
-      client-id: acmex
-      client-secret: acmesecretx
+      client-id: wmp
+      client-secret: wmpsecret
       scope: read,write
       auto-approve-scopes: '.*'
     authorization:
@@ -53,3 +53,5 @@ security:
 logging:
   level:
     root: INFO
+    org.springframework.security: DEBUG
+    org.springframework.web: DEBUG
