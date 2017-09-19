@@ -1,6 +1,6 @@
 package com.chinasoft.wmp.sso.server.configuration;
 
-import com.chinasoft.wmp.sso.server.controller.SessionUpdateFilter;
+import com.chinasoft.wmp.sso.server.filters.SessionChangeFilter;
 import com.mouse.web.authorization.local.WebLocalSecurityConfigurerAdapter;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
@@ -9,15 +9,10 @@ import org.springframework.boot.autoconfigure.security.SecurityProperties;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.core.annotation.Order;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
-import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
-import org.springframework.security.oauth2.client.token.ClientTokenServices;
 import org.springframework.security.oauth2.config.annotation.web.configuration.EnableAuthorizationServer;
 import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
-import org.springframework.security.web.csrf.CookieCsrfTokenRepository;
 import org.springframework.util.StringUtils;
-import org.springframework.web.bind.ServletRequestUtils;
 
-import javax.servlet.ServletResponse;
 import java.util.Arrays;
 
 @Configuration
@@ -27,8 +22,8 @@ public class WebSecurityConfiguration extends WebLocalSecurityConfigurerAdapter 
     private static final Log LOGGER = LogFactory.getLog(com.chinasoft.wmp.sso.server.configuration.WebSecurityConfiguration.class);
 
     @Autowired
-    private SessionUpdateFilter sessionUpdateFilter() {
-        return new SessionUpdateFilter("/login");
+    private SessionChangeFilter sessionUpdateFilter() {
+        return new SessionChangeFilter("/login");
     }
 
     @Override

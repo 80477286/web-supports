@@ -1,4 +1,4 @@
-package com.chinasoft.wmp.sso.server.controller;
+package com.chinasoft.wmp.sso.server.filters;
 
 import com.netflix.ribbon.proxy.annotation.Http;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
@@ -19,8 +19,8 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 
-public class SessionUpdateFilter extends AbstractAuthenticationProcessingFilter {
-    public SessionUpdateFilter(String defaultFilterProcessesUrl) {
+public class SessionChangeFilter extends AbstractAuthenticationProcessingFilter {
+    public SessionChangeFilter(String defaultFilterProcessesUrl) {
         super(defaultFilterProcessesUrl);
     }
 
