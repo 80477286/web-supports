@@ -3,6 +3,8 @@ package com.mouse.web.authorization.local;
 import com.mouse.web.authorization.configuration.BaseWebSecurityConfiguration;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
+import org.springframework.security.authentication.AuthenticationManager;
+import org.springframework.security.authentication.ProviderManager;
 import org.springframework.security.authentication.encoding.Md5PasswordEncoder;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
@@ -13,10 +15,10 @@ import org.springframework.security.web.access.intercept.FilterSecurityIntercept
  */
 public class WebLocalSecurityConfigurerAdapter extends BaseWebSecurityConfiguration {
 
-
     @Override
     protected void configure(HttpSecurity http) throws Exception {
         String[] matchers = (getPermits() == null || getPermits().trim().isEmpty()) ? new String[0] : getPermits().split("[,]");
+        http.addFilterBefore(filterSecurityInterceptor(), FilterSecurityInterceptor.class);
         http
                 .authorizeRequests()
                 //免验证地址

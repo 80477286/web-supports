@@ -10,6 +10,7 @@ import org.springframework.security.oauth2.provider.OAuth2Authentication;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import javax.servlet.http.HttpServletRequest;
 import java.security.Principal;
 import java.util.*;
 
@@ -36,7 +37,7 @@ public class ResourceContrller {
     }
 
     @RequestMapping({"/resource/me"})
-    public Object me(Principal principal) {
+    public Object me(HttpServletRequest request, Principal principal) {
         Map<String, Object> map = new LinkedHashMap<String, Object>(3);
         map.put("name", principal.getName());
         if (principal instanceof OAuth2Authentication) {

@@ -51,7 +51,7 @@ public class AuthorizationServerConfiguration extends AuthorizationServerConfigu
         // 配置TokenServices参数
         DefaultTokenServices tokenServices = new DefaultTokenServices();
         tokenServices.setTokenStore(tokenStore);
-        tokenServices.setSupportRefreshToken(true);
+        tokenServices.setSupportRefreshToken(false);
         tokenServices.setClientDetailsService(jdbcClientDetailsService);
         tokenServices.setTokenEnhancer(endpoints.getTokenEnhancer());
         tokenServices.setAccessTokenValiditySeconds((int) TimeUnit.DAYS.toSeconds(30)); // 30天

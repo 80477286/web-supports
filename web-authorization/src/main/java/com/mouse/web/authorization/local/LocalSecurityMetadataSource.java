@@ -5,6 +5,7 @@ import com.mouse.web.authorization.local.resource.service.IResourceService;
 import com.mouse.web.authorization.local.role.model.Role;
 import com.mouse.web.authorization.local.role.service.IRoleService;
 import org.apache.log4j.Logger;
+import org.springframework.beans.factory.InitializingBean;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.access.ConfigAttribute;
 import org.springframework.security.web.FilterInvocation;
@@ -16,11 +17,12 @@ import org.springframework.util.PathMatcher;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
+import java.util.Vector;
 
 
 @Service
 public class LocalSecurityMetadataSource implements
-        FilterInvocationSecurityMetadataSource {
+        FilterInvocationSecurityMetadataSource, InitializingBean {
     protected static final Logger LOG = Logger
             .getLogger(LocalSecurityMetadataSource.class);
 
@@ -62,7 +64,7 @@ public class LocalSecurityMetadataSource implements
     public Collection<ConfigAttribute> getAttributes(Object object)
             throws IllegalArgumentException {
         String requestUrl = getUrl(object);
-        Collection<ConfigAttribute> roles = new ArrayList<ConfigAttribute>();
+        Vector<ConfigAttribute> roles = new Vector<ConfigAttribute>();
         Collection<ConfigAttribute> configAttributes = getAllConfigAttributes();
         for (ConfigAttribute ca : configAttributes) {
             ResourceConfigAttribute rca = (ResourceConfigAttribute) ca;
@@ -92,6 +94,11 @@ public class LocalSecurityMetadataSource implements
         return requestUrl;
     }
 
+    @Override
+    public void afterPropertiesSet() throws Exception {
+
+    }
+
 
     public static class RoleConfigAttribute implements ConfigAttribute {
         private String id;
@@ -103,6 +110,21 @@ public class LocalSecurityMetadataSource implements
         @Override
         public String getAttribute() {
             return id;
+        }
+
+        @Override
+        public int hashCode() {
+            return id.hashCode();
+        }
+
+        @Override
+        public boolean equals(Object obj) {
+            if (RoleConfigAttribute.class.isAssignableFrom(obj.getClass())) {
+                RoleConfigAttribute tmp = (RoleConfigAttribute) obj;
+                return id.equals(tmp.getAttribute());
+            } else {
+                return false;
+            }
         }
     }
 
@@ -122,6 +144,22 @@ public class LocalSecurityMetadataSource implements
 
         public String getUrl() {
             return url;
+        }
+
+
+        @Override
+        public int hashCode() {
+            return id.hashCode();
+        }
+
+        @Override
+        public boolean equals(Object obj) {
+            if (RoleConfigAttribute.class.isAssignableFrom(obj.getClass())) {
+                RoleConfigAttribute tmp = (RoleConfigAttribute) obj;
+                return id.equals(tmp.getAttribute());
+            } else {
+                return false;
+            }
         }
     }
 }
