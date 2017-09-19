@@ -4,22 +4,17 @@
 <head>
 </head>
 <body>
-<div th:fragment="footer">
-
+<div th:fragment="footer" class="navbar-fixed-bottom">
     <div class="container">
-
         <footer>
             <!-- this is footer -->
             © 2017 mkyong.com
             <span sec:authorize="isAuthenticated()">
                 | Logged user: <span sec:authentication="name"></span> |
-                Roles: <span sec:authentication="principal.authorities"></span> |
                 <a th:href="@{/logout}">Sign Out</a>
             </span>
-
         </footer>
     </div>
-
 </div>
 </body>
 </html>
