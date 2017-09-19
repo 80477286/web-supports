@@ -19,8 +19,8 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 
-public class SessionChangeFilter extends AbstractAuthenticationProcessingFilter {
-    public SessionChangeFilter(String defaultFilterProcessesUrl) {
+public class SessionChangedFilter extends AbstractAuthenticationProcessingFilter {
+    public SessionChangedFilter(String defaultFilterProcessesUrl) {
         super(defaultFilterProcessesUrl);
     }
 
