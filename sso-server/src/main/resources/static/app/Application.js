@@ -38,7 +38,6 @@ Ext.application({
     },
     init: function (application) {
         Ext.log.info('development:true');
-        Ext.log.info('context:' + context);
         Ext.log.info('libsPath:' + libsPath);
         Ext.log.info('extjsPath:' + extjsPath);
         Ext.log.info('extendPath:' + extendPath);

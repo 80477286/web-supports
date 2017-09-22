@@ -1,6 +1,5 @@
 (function () {
-    window.context = '/';
-    window.libsPath = '/webjars/';
+    window.libsPath = 'webjars/';
     window.extjsPath = libsPath + 'extjs/6.2.0/build/';
     window.extendPath = libsPath + 'extjs/6.2.0/extend/';
     window.isDebug = false;

@@ -51,7 +51,7 @@ Ext.define('App.authorization.role.viewmodel.RoleViewModel', {
             }],
             proxy: {
                 type: 'majax',
-                url: '/authorization/role/query',
+                url: 'authorization/role/query',
                 reader: {
                     type: 'json',
                     rootProperty: 'data',

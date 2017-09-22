@@ -1,6 +1,6 @@
 server:
   port: 19000
-
+  context-path: /sso
 
 eureka:
   client:
