@@ -1,0 +1,41 @@
+tpl与data:创建组件的内容部份html，因为内容部份是可变的，用tpl+data可以使用update(newData)来更新内容
+renderTpl与initRenderData:创建组件框架html，只会初始化一次
+childEls:数组，内容为tpl或renderTpl中元素的id值的"-"后边的内容，如id="{id}-xxx"，则childEls=['xxx'],此时在组件内部使可使用this.xxx来访部到id="{id}-xxx"的元素
+
+tpl与renderTpl示例
+------------------------------------------------------------------------------------------------------------------------
+    Ext.define('Ext.ux.Navbar', {
+        extend: 'Ext.Component',
+        alias: ['widget.navbar'],//组件别名，可以是多个
+        baseCls: 'navbar',//基础样式类
+        //定义tpl或renderTpl元素的实例引用，以方便后续使用，主要有以下三种方式，定义的元素实例可以用this.xxx直接访问
+        //childEls: ['body', 'headerEl'],//注意元素的id、data-ref与clildEls子项的关系
+        //        renderSelectors: {
+        //            headerEl: 'div[data-ref="headerEl"]',
+        //            bodyEl: 'div[data-ref="bodyEl"]',
+        //        },
+        childEls: {headerEl: {dataRef: 'headerEl'}, bodyEl: {dataRef: 'bodyEl'}},
+        //{id}会在initRenderData时从this.callParent()时取到，最后返回用于在tpl中引用。
+        renderTpl: ['<div id="{id}-headerEl" data-ref="headerEl" class="{baseCls}-header">{title}</div>',
+            '<div id="{id}-bodyEl" data-ref="bodyEl" class="{baseCls}-body">{% this.renderContent(out, values) %}</div>'],
+//将bodyEl设置为组件body,tpl内容将会被放到body内部
+        getTargetEl: function () {
+            return this.bodyEl;
+        },
+        //renderData数据将绑定到renderTpl中,2种方式
+        renderData: {title: "title"}
+//        ,
+//        initRenderData: function () {
+//            var data = this.callParent(arguments);
+//            return Ext.apply(data, {
+//                title: this.title
+//            });
+//        }
+    })
+
+    Ext.define('Ext.ux.ExtendNavbar', {
+        extend: 'Ext.ux.Navbar',
+        alias: ['widget.extend-navbar'],
+        tpl: ['tpl content from this.data or this.update(obj):{name}']
+    })
+------------------------------------------------------------------------------------------------------------------------
