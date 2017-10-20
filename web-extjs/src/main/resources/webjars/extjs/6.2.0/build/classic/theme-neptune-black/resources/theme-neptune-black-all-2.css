@@ -7896,7 +7896,7 @@ div.x-border-layout-ct {
 }
 /* E:/sencha-workspace/my-app/ext/classic/theme-neutral/sass/src/panel/Panel.scss:282 */
 .x-panel-header-navigation {
-    font-size: 0;
+    font-size: 46px;
     border: 1px solid #333;
 }
 /* E:/sencha-workspace/my-app/ext/classic/theme-neutral/sass/src/panel/Panel.scss:289 */
@@ -7933,10 +7933,11 @@ div.x-border-layout-ct {
 /* E:/sencha-workspace/my-app/ext/classic/theme-neutral/sass/src/panel/Panel.scss:380 */
 .x-panel-header-title-navigation {
     color: #fff;
-    font-size: 0;
+    font-size: 46px;
     font-weight: bold;
     font-family: helvetica, arial, verdana, sans-serif;
-    line-height: 0;
+    line-height: 46px;
+    margin: 16px;
 }
 /* E:/sencha-workspace/my-app/ext/classic/theme-neutral/sass/src/panel/Panel.scss:393 */
 .x-panel-header-title-navigation > .x-title-text-navigation {
@@ -7945,45 +7946,45 @@ div.x-border-layout-ct {
 }
 /* E:/sencha-workspace/my-app/ext/classic/theme-neutral/sass/src/panel/Panel.scss:440 */
 .x-panel-header-title-navigation > .x-title-icon-wrap-navigation.x-title-icon-top {
-    height: 0;
-    padding-bottom: 0;
+    height: 46px;
+    padding-bottom: 0px;
 }
 /* E:/sencha-workspace/my-app/ext/classic/theme-neutral/sass/src/panel/Panel.scss:445 */
 .x-panel-header-title-navigation > .x-title-icon-wrap-navigation.x-title-icon-right {
-    width: 0;
-    padding-left: 0;
+    width: 128px;
+    padding-left: 0px;
 }
 /* E:/sencha-workspace/my-app/ext/classic/theme-neutral/sass/src/panel/Panel.scss:450 */
 .x-panel-header-title-navigation > .x-title-icon-wrap-navigation.x-title-icon-right.x-rtl {
     padding-left: 0;
-    padding-right: 0;
+    padding-right: 0px;
 }
 /* E:/sencha-workspace/my-app/ext/classic/theme-neutral/sass/src/panel/Panel.scss:457 */
 .x-panel-header-title-navigation > .x-title-icon-wrap-navigation.x-title-icon-bottom {
-    height: 0;
-    padding-top: 0;
+    height: 46px;
+    padding-top: 0px;
 }
 /* E:/sencha-workspace/my-app/ext/classic/theme-neutral/sass/src/panel/Panel.scss:462 */
 .x-panel-header-title-navigation > .x-title-icon-wrap-navigation.x-title-icon-left {
-    width: 0;
-    padding-right: 0;
+    width: 128px;
+    padding-right: 0px;
 }
 /* E:/sencha-workspace/my-app/ext/classic/theme-neutral/sass/src/panel/Panel.scss:467 */
 .x-panel-header-title-navigation > .x-title-icon-wrap-navigation.x-title-icon-left.x-rtl {
     padding-right: 0;
-    padding-left: 0;
+    padding-left: 0px;
 }
 /* E:/sencha-workspace/my-app/ext/classic/theme-neutral/sass/src/panel/Panel.scss:474 */
 .x-panel-header-title-navigation > .x-title-icon-wrap-navigation > .x-title-icon-navigation {
-    width: 0;
-    height: 0;
+    width: 128px;
+    height: 46px;
     background-position: center center;
 }
 /* E:/sencha-workspace/my-app/ext/classic/theme-neutral/sass/src/panel/Panel.scss:480 */
 .x-panel-header-title-navigation > .x-title-icon-wrap-navigation > .x-title-glyph {
     color: #fff;
-    font-size: 0;
-    line-height: 0;
+    font-size: 46px;
+    line-height: 46px;
 }
 /* E:/sencha-workspace/my-app/ext/classic/theme-neutral/sass/src/panel/Panel.scss:497 */
 .x-ie8 .x-panel-header-title-navigation > .x-title-icon-wrap-navigation > .x-title-glyph {
@@ -8227,8 +8228,8 @@ div.x-border-layout-ct {
 .x-title-icon-navigation {
     font-family: FontAwesome;
     color: #fff;
-    font-size: 24px;
-    line-height: 24px;
+    font-size: 46px;
+    line-height: 46px;
 }
 /* E:/sencha-workspace/my-app/classic/sass/src/view/main/Main.scss:67 */
 .x-tab-icon-el-navigation {

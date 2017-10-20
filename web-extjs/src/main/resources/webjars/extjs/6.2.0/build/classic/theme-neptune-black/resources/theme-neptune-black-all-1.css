@@ -2728,19 +2728,19 @@
 }
 /* E:/sencha-workspace/my-app/ext/packages/core/sass/src/list/TreeItem.scss:324 */
 &.x-treelist-highlight-path .x-treelist-item:hover > * > .x-treelist-item-icon {
-    color: #b0b0b0;
-    transition: color 0.5s;
-}
+     color: #b0b0b0;
+     transition: color 0.5s;
+ }
 /* E:/sencha-workspace/my-app/ext/packages/core/sass/src/list/TreeItem.scss:328 */
 &.x-treelist-highlight-path .x-treelist-item:hover > * > .x-treelist-item-text {
-    color: #000;
-    transition: color 0.5s;
-}
+     color: #000;
+     transition: color 0.5s;
+ }
 /* E:/sencha-workspace/my-app/ext/packages/core/sass/src/list/TreeItem.scss:332 */
 &.x-treelist-highlight-path .x-treelist-item:hover > * > .x-treelist-item-expander {
-    color: #b0b0b0;
-    transition: color 0.5s;
-}
+     color: #b0b0b0;
+     transition: color 0.5s;
+ }
 /* E:/sencha-workspace/my-app/ext/packages/core/sass/src/list/TreeItem.scss:339 */
 .x-treelist-row:hover {
     background-color: #e6e6e6;
