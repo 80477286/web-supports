@@ -10,6 +10,7 @@ import java.util.List;
 public class LocalUserDetails extends User {
     private String name;
     private String email;
+    private String id;
 
 
     public LocalUserDetails(com.mouse.web.authorization.local.user.model.User user, List<GrantedAuthority> gas) {
@@ -22,6 +23,7 @@ public class LocalUserDetails extends User {
                 gas);
         this.name = user.getName();
         this.email = user.getEmail();
+        this.id = user.getId();
     }
 
     public LocalUserDetails(String username, String password,
@@ -39,5 +41,9 @@ public class LocalUserDetails extends User {
 
     public String getEmail() {
         return email;
+    }
+
+    public String getId() {
+        return id;
     }
 }
