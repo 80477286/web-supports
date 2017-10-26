@@ -158,8 +158,5 @@ Ext.define('Extend.navbar.Navbar', {
             console.log({level: 'error', msg: 'failed to create menu!'});
         }
         return null;
-    },
-    initEvents: function () {
-        this.callParent(arguments);
     }
 })
