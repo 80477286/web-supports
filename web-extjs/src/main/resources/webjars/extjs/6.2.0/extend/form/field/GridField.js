@@ -2,7 +2,7 @@ Ext.define('Extend.form.field.GridField', {
 	extend : 'Extend.grid.SelectedGridPanel',
 	mixins : ['Ext.form.field.Base'],
 	alias : ['widget.gridfield', 'widget.GridField'],
-	border : true,
+	border : false,
 	columnLines : true,
 	height : 200,
 	config : {
