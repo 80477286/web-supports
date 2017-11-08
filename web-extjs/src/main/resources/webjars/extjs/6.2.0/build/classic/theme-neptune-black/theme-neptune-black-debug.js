@@ -1,4 +1,4 @@
-Ext.define('Ext.theme.neptune.black.Component', {
+Ext.define('Ext.theme.neptune.Component', {
     override: 'Ext.Component',
     initComponent: function() {
         this.callParent();
@@ -29,18 +29,18 @@ Ext.define('Ext.theme.neptune.black.Component', {
     Ext.theme.name = 'Neptune';
 });
 
-Ext.define('Ext.theme.neptune.black.resizer.Splitter', {
+Ext.define('Ext.theme.neptune.resizer.Splitter', {
     override: 'Ext.resizer.Splitter',
     size: 8
 });
 
-Ext.define('Ext.theme.neptune.black.toolbar.Toolbar', {
+Ext.define('Ext.theme.neptune.toolbar.Toolbar', {
     override: 'Ext.toolbar.Toolbar',
     usePlainButtons: false,
     border: false
 });
 
-Ext.define('Ext.theme.neptune.black.layout.component.Dock', {
+Ext.define('Ext.theme.neptune.layout.component.Dock', {
     override: 'Ext.layout.component.Dock',
     /**
      * This table contains the border removal classes indexed by the sum of the edges to
@@ -317,7 +317,7 @@ Ext.define('Ext.theme.neptune.black.layout.component.Dock', {
     }
 });
 
-Ext.define('Ext.theme.neptune.black.panel.Panel', {
+Ext.define('Ext.theme.neptune.panel.Panel', {
     override: 'Ext.panel.Panel',
     border: false,
     bodyBorder: false,
@@ -333,18 +333,18 @@ Ext.define('Ext.theme.neptune.black.panel.Panel', {
     }
 });
 
-Ext.define('Ext.theme.neptune.black.container.ButtonGroup', {
+Ext.define('Ext.theme.neptune.container.ButtonGroup', {
     override: 'Ext.container.ButtonGroup',
     usePlainButtons: false
 });
 
-Ext.define('Ext.theme.neptune.black.toolbar.Paging', {
+Ext.define('Ext.theme.neptune.toolbar.Paging', {
     override: 'Ext.toolbar.Paging',
     defaultButtonUI: 'plain-toolbar',
     inputItemWidth: 40
 });
 
-Ext.define('Ext.theme.neptune.black.picker.Month', {
+Ext.define('Ext.theme.neptune.picker.Month', {
     override: 'Ext.picker.Month',
     // Monthpicker contains logic that reduces the margins of the month items if it detects
     // that the text has wrapped.  This can happen in the classic theme  in certain
@@ -358,12 +358,12 @@ Ext.define('Ext.theme.neptune.black.picker.Month', {
     measureMaxHeight: 36
 });
 
-Ext.define('Ext.theme.neptune.black.form.field.HtmlEditor', {
+Ext.define('Ext.theme.neptune.form.field.HtmlEditor', {
     override: 'Ext.form.field.HtmlEditor',
     defaultButtonUI: 'plain-toolbar'
 });
 
-Ext.define('Ext.theme.neptune.black.panel.Table', {
+Ext.define('Ext.theme.neptune.panel.Table', {
     override: 'Ext.panel.Table',
     lockableBodyBorder: true,
     initComponent: function() {
@@ -375,22 +375,22 @@ Ext.define('Ext.theme.neptune.black.panel.Table', {
     }
 });
 
-Ext.define('Ext.theme.neptune.black.grid.RowEditor', {
+Ext.define('Ext.theme.neptune.grid.RowEditor', {
     override: 'Ext.grid.RowEditor',
     buttonUI: 'default-toolbar'
 });
 
-Ext.define('Ext.theme.neptune.black.grid.column.RowNumberer', {
+Ext.define('Ext.theme.neptune.grid.column.RowNumberer', {
     override: 'Ext.grid.column.RowNumberer',
     width: 25
 });
 
-Ext.define('Ext.theme.neptune.black.menu.Separator', {
+Ext.define('Ext.theme.neptune.menu.Separator', {
     override: 'Ext.menu.Separator',
     border: true
 });
 
-Ext.define('Ext.theme.neptune.black.menu.Menu', {
+Ext.define('Ext.theme.neptune.menu.Menu', {
     override: 'Ext.menu.Menu',
     showSeparator: false
 });
