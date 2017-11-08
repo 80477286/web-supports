@@ -234,11 +234,12 @@ Ext.define('Extend.grid.ExtendGridPanel', {
                 operation._proxy.setPageParam('pageable.page')
                 var eps = {};
                 if (!Ext.isEmpty(me.extraParams)) {
-                    Ext.apply(eps, me.extraParams);
-                }
-                if (!Ext.isEmpty(me.getExtraParams)
-                    && Ext.isFunction(me.getExtraParams)) {
-                    Ext.apply(eps, me.getExtraParams());
+                    if (Ext.isFunction(me.extraParams)) {
+                        var params = me.getExtraParams();
+                        Ext.apply(eps, params);
+                    } else if (Ext.isObject(me.extraParams)) {
+                        Ext.apply(eps, me.extraParams);
+                    }
                 }
                 Ext.apply(operation._proxy.extraParams, eps);
 
