@@ -32,9 +32,8 @@ Ext.define('Extend.grid.ExtendGridPanel', {
     enableColumnMove: false,
     rowLines: true,
     border: true,
-    getExtraParams: Ext.emptyFn,
     config: {
-        extraParams: {},
+        extraParams: null,
         pageable: true,
         model: 'Extend.data.IdentityModel',
         selModel: {
