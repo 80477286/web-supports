@@ -235,7 +235,7 @@ Ext.define('Extend.grid.ExtendGridPanel', {
                 var eps = {};
                 if (!Ext.isEmpty(me.extraParams)) {
                     if (Ext.isFunction(me.extraParams)) {
-                        var params = me.getExtraParams();
+                        var params = me.extraParams();
                         Ext.apply(eps, params);
                     } else if (Ext.isObject(me.extraParams)) {
                         Ext.apply(eps, me.extraParams);
