@@ -23,12 +23,17 @@ import java.util.Set;
  */
 @NoRepositoryBean
 public class BaseRepositoryImpl<T, ID extends Serializable> extends SimpleJpaRepository<T, ID> implements BaseRepository<T, ID> {
+    public EntityManager entityManager;
+
     public BaseRepositoryImpl(Class<T> domainClass, EntityManager em) {
         super(domainClass, em);
+        this.entityManager = em;
     }
 
-    public BaseRepositoryImpl(JpaEntityInformation<T, ?> entityInformation, EntityManager entityManager) {
-        super(entityInformation, entityManager);
+
+    public BaseRepositoryImpl(JpaEntityInformation<T, ?> entityInformation, EntityManager em) {
+        super(entityInformation, em);
+        this.entityManager = em;
     }
 
     @Override
@@ -40,5 +45,30 @@ public class BaseRepositoryImpl<T, ID extends Serializable> extends SimpleJpaRep
         TypedQuery<T> query = getQuery(spec, pageable);
         Page<T> page = readPage(query, getDomainClass(), pageable, spec);
         return page;
+    }
+
+    @Override
+    public EntityManager getEntityManager() {
+        return entityManager;
+    }
+
+    @Override
+    public void clear() {
+        entityManager.clear();
+    }
+
+    @Override
+    public void close() {
+        entityManager.close();
+    }
+
+    @Override
+    public void detach(Object obj) {
+        entityManager.detach(obj);
+    }
+
+    @Override
+    public void refresh(Object obj) {
+        entityManager.refresh(obj);
     }
 }

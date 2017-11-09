@@ -64,14 +64,14 @@
             <groupId>org.springframework.security.oauth</groupId>
             <artifactId>spring-security-oauth2</artifactId>
         </dependency>
-
-
-        <!--自定义库-->
         <dependency>
             <groupId>com.mouse.web</groupId>
             <artifactId>web-authorization</artifactId>
             <version>1.0</version>
         </dependency>
+
+
+        <!--自定义库-->
         <dependency>
             <groupId>com.mouse.web</groupId>
             <artifactId>web-extjs</artifactId>
