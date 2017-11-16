@@ -232,6 +232,7 @@ Ext.define('Extend.grid.ExtendGridPanel', {
                 operation._proxy.setStartParam("pageable.start")
                 operation._proxy.setLimitParam('pageable.size')
                 operation._proxy.setPageParam('pageable.page')
+                operation._proxy.setSortParam('pageable.sort')
                 var eps = {};
                 if (!Ext.isEmpty(me.extraParams)) {
                     if (Ext.isFunction(me.extraParams)) {
