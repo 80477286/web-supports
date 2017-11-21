@@ -76,7 +76,9 @@ public class EntityParamMethodArgumentResolver implements HandlerMethodArgumentR
             String name = entry.getKey();
             if (name.startsWith(pn + '.')) {
                 // 执行urldecode
-                String value = URLDecoder.decode(entry.getValue()[0], "UTF-8");
+                String value = entry.getValue()[0];
+                value = replacer(value);
+                value = URLDecoder.decode(value, "UTF-8");
                 map.put(name.replaceFirst(pn + '.', ""), value);
             }
         }
@@ -87,6 +89,18 @@ public class EntityParamMethodArgumentResolver implements HandlerMethodArgumentR
         // 将K-V绑定到binder.target属性上
         binder.bind(propertyValues);
     }
+
+    public static String replacer(String value) {
+        String data = value;
+        try {
+            data = data.replaceAll("%(?![0-9a-fA-F]{2})", "%25");
+            data = data.replaceAll("\\+", "%2B");
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return data;
+    }
+
     protected Object createAttribute(String attributeName, MethodParameter methodParam,
                                      WebDataBinderFactory binderFactory, NativeWebRequest request) throws Exception {
 

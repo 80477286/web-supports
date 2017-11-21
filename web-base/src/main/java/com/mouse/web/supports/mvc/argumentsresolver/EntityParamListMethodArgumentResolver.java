@@ -85,7 +85,10 @@ public class EntityParamListMethodArgumentResolver implements HandlerMethodArgum
             if (name.startsWith(parameterName + '[')) {
                 // 执行urldecode
                 String tn = name.replaceFirst(parameterName + "\\[", "list[");
-                String value = URLDecoder.decode(entry.getValue()[0], "UTF-8");
+
+                String value = entry.getValue()[0];
+                value = replacer(value);
+                value = URLDecoder.decode(entry.getValue()[0], "UTF-8");
                 map.put(tn, value);
                 createItem(tn, revier.getList(), valueClass);
             }
@@ -94,6 +97,17 @@ public class EntityParamListMethodArgumentResolver implements HandlerMethodArgum
 
         // 将K-V绑定到binder.target属性上
         binder.bind(propertyValues);
+    }
+
+    public static String replacer(String value) {
+        String data = value;
+        try {
+            data = data.replaceAll("%(?![0-9a-fA-F]{2})", "%25");
+            data = data.replaceAll("\\+", "%2B");
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return data;
     }
 
     private void createItem(String name, List<Object> users, Class valueClass) {
