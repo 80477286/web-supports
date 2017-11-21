@@ -12,7 +12,7 @@ Ext.state.Manager.setProvider(new Ext.state.LocalStorageProvider());
 Ext.require(['Extend.window.MessageBox', 'Extend.Utils', 'Extend.grid.column.BooleanColumn',
     'Extend.grid.column.HisColumn', 'Extend.grid.column.YmdColumn',
     'Extend.grid.column.YmdHiColumn',
-    'Extend.grid.column.YmdHisColumn',
+    'Extend.grid.column.YmdHisColumn', 'Extend.grid.column.CdtColumn',
     'Extend.form.field.BooleanComboBox', 'Extend.form.field.GridField',
     'Extend.form.field.CheckCombo', 'Extend.form.field.TreeComboBox',
     'Extend.form.field.YmdDateField', 'Extend.form.field.MonthField']);
