@@ -13,12 +13,12 @@ Ext.define('Extend.form.field.CheckCombo', {
 						'Ext.XTemplate',
 						'<style type="text/css">',
 						'.x-combo-checker {float:left;margin-right: 3px;background-color: transparent;background-image: url("'
-								+ extPath
+								+ extjsPath
 								+ 'classic/theme-'
 								+ theme
 								+ '/resources/images/menu/default-unchecked.png"); background-repeat: no-repeat;  height: 16px; width: 16px; margin-top: 2px;}',
 						'.x-boundlist-selected .x-combo-checker {background-image: url("'
-								+ extPath
+								+ extjsPath
 								+ 'classic/theme-'
 								+ theme
 								+ '/resources/images/menu/default-checked.png");}',
