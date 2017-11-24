@@ -31,6 +31,7 @@ Ext.define('Extend.form.field.CheckCombo', {
 						'</tpl></ul>')
 		this.callParent(arguments);
 		this.on({
+            order: 'before',
 			change : function($this, nv, ov) {
 				var sv = [];
 				if (!Ext.isEmpty(nv)) {
