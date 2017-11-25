@@ -21,7 +21,6 @@
                 <targetPath>${destDir}</targetPath>
             </resource>
         </resources>
-        
     </build>
 
     <dependencies>

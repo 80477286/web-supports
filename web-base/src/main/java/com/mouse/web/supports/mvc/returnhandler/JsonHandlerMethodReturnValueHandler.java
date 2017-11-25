@@ -2,6 +2,8 @@ package com.mouse.web.supports.mvc.returnhandler;
 
 import com.fasterxml.jackson.core.JsonEncoding;
 import com.mouse.web.supports.mvc.bind.annotation.JSON;
+import com.mouse.web.supports.mvc.result.PageResult;
+import com.mouse.web.supports.mvc.result.Result;
 import org.apache.struts2.json.JSONException;
 import org.apache.struts2.json.JSONWriter;
 import org.springframework.core.MethodParameter;
@@ -46,8 +48,8 @@ public class JsonHandlerMethodReturnValueHandler implements HandlerMethodReturnV
             Object target = returnValue;
             if (target != null && PageImpl.class.isAssignableFrom(target.getClass())) {
                 target = new PageResult((PageImpl) returnValue);
-            } else {
-                target = new Result(target);
+            } else if (target == null || !target.getClass().isAssignableFrom(Result.class)) {
+                target = new Result(true, target);
             }
             mavContainer.setRequestHandled(true);
             ServletServerHttpResponse outputMessage = this.createOutputMessage(webRequest);
@@ -116,51 +118,5 @@ public class JsonHandlerMethodReturnValueHandler implements HandlerMethodReturnV
         return JsonEncoding.UTF8;
     }
 
-    public static class PageResult extends Result {
-        private PageImpl page;
-        private boolean success = true;
 
-        public PageResult(PageImpl data) {
-            super(data);
-            this.page = data;
-        }
-
-        public long getTotal() {
-            return page.getTotalElements();
-        }
-
-        public Object getData() {
-            return page.getContent();
-        }
-
-        public void setSuccess(boolean success) {
-            this.success = success;
-        }
-
-        public boolean isSuccess() {
-            return success;
-        }
-    }
-
-
-    public static class Result {
-        private Object data;
-        private boolean success = true;
-
-        public Result(Object data) {
-            this.data = data;
-        }
-
-        public Object getData() {
-            return data;
-        }
-
-        public boolean isSuccess() {
-            return success;
-        }
-
-        public void setSuccess(boolean success) {
-            this.success = success;
-        }
-    }
 }
