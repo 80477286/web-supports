@@ -1,6 +1,7 @@
 package com.mouse.web.supports.jpa.repository.specification;
 
 import org.apache.commons.lang3.StringUtils;
+import org.apache.commons.lang3.math.NumberUtils;
 import org.hibernate.jpa.criteria.path.PluralAttributePath;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.domain.Specification;
@@ -18,10 +19,17 @@ import java.util.Set;
 public class DynamicSpecification<T> implements Specification<T> {
     private Pageable pageable;
     private Map<String, Object> params;
+    private boolean distinct = false;
 
     public DynamicSpecification(Map<String, Object> params, Pageable pageable) {
         this.params = params;
         this.pageable = pageable;
+    }
+
+    public DynamicSpecification(Map<String, Object> params, Pageable pageable, boolean distinct) {
+        this.params = params;
+        this.pageable = pageable;
+        this.distinct = distinct;
     }
 
     @Override
@@ -31,6 +39,7 @@ public class DynamicSpecification<T> implements Specification<T> {
                 query.orderBy(QueryUtils.toOrders(pageable.getSort(), root, cirteriaBuilder));
             }
         }
+        query.distinct(this.distinct);
         Predicate resultPre = null;
         if (params != null) {
             Set<Map.Entry<String, Object>> entries = params.entrySet();
@@ -98,13 +107,13 @@ public class DynamicSpecification<T> implements Specification<T> {
             if (("eq".equalsIgnoreCase(c.getOper()) || "=".equalsIgnoreCase(c.getOper())) && c.getValue() != null) {
                 return criteriaBuilder.equal(path, c.getValue());
             } else if (("ge".equalsIgnoreCase(c.getOper()) || ">=".equalsIgnoreCase(c.getOper())) && c.getValue() != null) {
-                return criteriaBuilder.ge(path, (Number) c.getValue());
+                return criteriaBuilder.ge(path.as(Number.class), NumberUtils.createNumber(c.getValue().toString()));
             } else if (("le".equalsIgnoreCase(c.getOper()) || "<=".equalsIgnoreCase(c.getOper())) && c.getValue() != null) {
-                return criteriaBuilder.le(path.as(Number.class), (Number) c.getValue());
+                return criteriaBuilder.le(path.as(Number.class), NumberUtils.createNumber(c.getValue().toString()));
             } else if (("gt".equalsIgnoreCase(c.getOper()) || ">".equalsIgnoreCase(c.getOper())) && c.getValue() != null) {
-                return criteriaBuilder.gt(path.as(Number.class), (Number) c.getValue());
+                return criteriaBuilder.gt(path.as(Number.class), NumberUtils.createNumber(c.getValue().toString()));
             } else if (("lt".equalsIgnoreCase(c.getOper()) || "<".equalsIgnoreCase(c.getOper())) && c.getValue() != null) {
-                return criteriaBuilder.lt(path.as(Number.class), (Number) c.getValue());
+                return criteriaBuilder.lt(path.as(Number.class), NumberUtils.createNumber(c.getValue().toString()));
             } else if (("like".equalsIgnoreCase(c.getOper()) || "l".equalsIgnoreCase(c.getOper())) && c.getValue() != null) {
                 return criteriaBuilder.like(path.as(String.class), c.getValue().toString());
             } else if (":".equalsIgnoreCase(c.getOper()) && c.getValue() != null) {

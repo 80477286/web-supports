@@ -12,6 +12,7 @@ import org.springframework.data.jpa.repository.support.SimpleJpaRepository;
 import org.springframework.data.repository.NoRepositoryBean;
 
 import javax.persistence.EntityManager;
+import javax.persistence.Query;
 import javax.persistence.TypedQuery;
 import javax.persistence.criteria.*;
 import java.io.Serializable;
@@ -34,6 +35,18 @@ public class BaseRepositoryImpl<T, ID extends Serializable> extends SimpleJpaRep
     public BaseRepositoryImpl(JpaEntityInformation<T, ?> entityInformation, EntityManager em) {
         super(entityInformation, em);
         this.entityManager = em;
+    }
+
+
+    @Override
+    public Page<T> findAllDistinct(final Map<String, Object> params, Pageable pageable) {
+        if (pageable == null) {
+            pageable = new PageRequest(0, Integer.MAX_VALUE);
+        }
+        Specification spec = new DynamicSpecification(params, pageable, true);
+        TypedQuery<T> query = getQuery(spec, pageable);
+        Page<T> page = readPage(query, getDomainClass(), pageable, spec);
+        return page;
     }
 
     @Override

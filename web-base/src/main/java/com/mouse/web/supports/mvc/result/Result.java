@@ -9,9 +9,9 @@ public class Result {
 
     private boolean success = false;
     private Object data;
-    private String message;
+    private String result;
     private final List<String> errors = new ArrayList<String>(0);
-    private final List<String> infos = new ArrayList<String>(0);
+    private final List<String> messages = new ArrayList<String>(0);
     private Exception exception = null;
 
     public Result(boolean success) {
@@ -23,12 +23,12 @@ public class Result {
         this.data = data;
     }
 
-    public String getMessage() {
-        return message;
+    public String getResult() {
+        return result;
     }
 
-    public void setMessage(String message) {
-        this.message = message;
+    public void setResult(String result) {
+        this.result = result;
     }
 
     public Result(Object data) {
@@ -63,16 +63,16 @@ public class Result {
         this.errors.addAll(errors);
     }
 
-    public List<String> getInfos() {
-        return infos;
+    public List<String> getMessages() {
+        return messages;
     }
 
-    public void addInfo(String info) {
-        this.infos.add(info);
+    public void addMessage(String message) {
+        this.messages.add(message);
     }
 
-    public void addInfos(List<String> infos) {
-        this.infos.addAll(infos);
+    public void addMessages(List<String> messages) {
+        this.messages.addAll(messages);
     }
 
     public String getException() {

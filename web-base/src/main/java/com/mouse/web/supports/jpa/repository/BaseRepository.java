@@ -16,6 +16,8 @@ import java.util.Map;
 @NoRepositoryBean
 public interface BaseRepository<T, ID extends Serializable> extends JpaRepository<T, ID>, JpaSpecificationExecutor<T> {
 
+    Page<T> findAllDistinct(Map<String, Object> params, Pageable pageable);
+
     Page<T> findAll(final Map<String, Object> params, final Pageable pageable);
 
 

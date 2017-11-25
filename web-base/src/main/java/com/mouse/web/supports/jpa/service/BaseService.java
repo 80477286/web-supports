@@ -1,6 +1,5 @@
 package com.mouse.web.supports.jpa.service;
 
-import com.mouse.web.supports.jpa.repository.BaseRepository;
 import org.springframework.data.domain.Example;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
@@ -115,6 +114,10 @@ public abstract class BaseService<T, ID extends Serializable> implements IBaseSe
         return getRepository().findAll(params, pageable);
     }
 
+    @Override
+    public Page<T> queryDistinct(Map<String, Object> params, Pageable pageable) {
+        return getRepository().findAllDistinct(params, pageable);
+    }
 
     @Override
     public <S extends T> Iterable<S> query(Example<S> example) {
@@ -125,6 +128,7 @@ public abstract class BaseService<T, ID extends Serializable> implements IBaseSe
     public <S extends T> Iterable<S> query(Example<S> example, Sort sort) {
         return getRepository().findAll(example, sort);
     }
+
 
     @Override
     public <S extends T> Page<S> query(Example<S> example, Pageable pageable) {
