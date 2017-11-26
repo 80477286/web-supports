@@ -33,10 +33,10 @@ public class DynamicSpecification<T> implements Specification<T> {
     }
 
     @Override
-    public Predicate toPredicate(Root<T> root, CriteriaQuery<?> query, CriteriaBuilder cirteriaBuilder) {
+    public Predicate toPredicate(Root<T> root, CriteriaQuery<?> query, CriteriaBuilder criteriaBuilder) {
         if (pageable != null) {
             if (pageable.getSort() != null) {
-                query.orderBy(QueryUtils.toOrders(pageable.getSort(), root, cirteriaBuilder));
+                query.orderBy(QueryUtils.toOrders(pageable.getSort(), root, criteriaBuilder));
             }
         }
         query.distinct(this.distinct);
@@ -45,13 +45,13 @@ public class DynamicSpecification<T> implements Specification<T> {
             Set<Map.Entry<String, Object>> entries = params.entrySet();
             for (Map.Entry<String, Object> entry : entries) {
                 Condition specificationOperator = new Condition(entry);
-                Predicate predicate = generatePredicate(root, cirteriaBuilder, specificationOperator);
+                Predicate predicate = generatePredicate(root, criteriaBuilder, specificationOperator);
                 if (predicate != null) {
                     if (resultPre != null) {
                         if (specificationOperator.getOper().equals("or")) {
-                            resultPre = cirteriaBuilder.or(resultPre, predicate);
+                            resultPre = criteriaBuilder.or(resultPre, predicate);
                         } else {
-                            resultPre = cirteriaBuilder.and(resultPre, predicate);
+                            resultPre = criteriaBuilder.and(resultPre, predicate);
                         }
                     } else {
                         resultPre = predicate;
@@ -60,19 +60,6 @@ public class DynamicSpecification<T> implements Specification<T> {
             }
         }
         return resultPre;
-    }
-
-    private List<Predicate> createPredicate(Root<T> root, Map<String, Object> params) {
-        List<Predicate> predicates = new ArrayList<Predicate>(0);
-        if (params != null) {
-            Set<Map.Entry<String, Object>> entries = params.entrySet();
-            for (Map.Entry<String, Object> entry : entries) {
-                String key = entry.getKey();
-                String fieldPath = StringUtils.substringBefore(key, "_");
-                Path<T> path = getPath(root, root, fieldPath);
-            }
-        }
-        return predicates;
     }
 
     /**
@@ -115,7 +102,19 @@ public class DynamicSpecification<T> implements Specification<T> {
             } else if (("lt".equalsIgnoreCase(c.getOper()) || "<".equalsIgnoreCase(c.getOper())) && c.getValue() != null) {
                 return criteriaBuilder.lt(path.as(Number.class), NumberUtils.createNumber(c.getValue().toString()));
             } else if (("like".equalsIgnoreCase(c.getOper()) || "l".equalsIgnoreCase(c.getOper())) && c.getValue() != null) {
-                return criteriaBuilder.like(path.as(String.class), c.getValue().toString());
+                if (c.getValue().getClass().isArray()) {
+                    String[] values = (String[]) c.getValue();
+                    List<Predicate> predicates = new ArrayList<Predicate>(0);
+                    for (int i = 0; i < values.length; i++) {
+                        String value = values[i];
+                        Condition specificationOperator = new Condition(c.getPath(), value, c.getOper(), c.getJoin());
+                        Predicate predicate = generatePredicate(root, criteriaBuilder, specificationOperator);
+                        predicates.add(predicate);
+                    }
+                    return criteriaBuilder.or(predicates.toArray(new Predicate[predicates.size()]));
+                } else {
+                    return criteriaBuilder.like(path.as(String.class), c.getValue().toString());
+                }
             } else if (":".equalsIgnoreCase(c.getOper()) && c.getValue() != null) {
                 return criteriaBuilder.like(path.as(String.class), "%" + c.getValue() + "%");
             } else if (":l".equalsIgnoreCase(c.getOper()) && c.getValue() != null) {

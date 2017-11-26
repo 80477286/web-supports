@@ -1,15 +1,11 @@
 package com.mouse.web.supports.mvc.argumentsresolver;
 
-import com.mouse.web.supports.mvc.bind.annotation.EntityParam;
 import com.mouse.web.supports.mvc.bind.annotation.MapParam;
 import org.springframework.core.MethodParameter;
 import org.springframework.util.LinkedMultiValueMap;
 import org.springframework.util.MultiValueMap;
-import org.springframework.util.StringUtils;
-import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.support.WebDataBinderFactory;
 import org.springframework.web.context.request.NativeWebRequest;
-import org.springframework.web.method.annotation.RequestParamMapMethodArgumentResolver;
 import org.springframework.web.method.support.HandlerMethodArgumentResolver;
 import org.springframework.web.method.support.ModelAndViewContainer;
 
@@ -38,11 +34,15 @@ public class MapParamMethodArgumentResolver implements HandlerMethodArgumentReso
             while (iterator.hasNext()) {
                 entry = (Map.Entry) iterator.next();
                 String key = (String) entry.getKey();
-                if (key.startsWith(name + '.') && ((String[]) entry.getValue()).length > 0) {
-                    result.put(key.replaceFirst(name + '.', ""), ((String[]) entry.getValue())[0]);
+                String[] value = (String[]) entry.getValue();
+                if (key.startsWith(name + '.')) {
+                    if (value.length > 1) {
+                        result.put(key.replaceFirst(name + '.', ""), value);
+                    } else if (value.length > 0) {
+                        result.put(key.replaceFirst(name + '.', ""), value[0]);
+                    }
                 }
             }
-
             return result;
         } else {
             LinkedMultiValueMap result = new LinkedMultiValueMap(parameterMap.size());
