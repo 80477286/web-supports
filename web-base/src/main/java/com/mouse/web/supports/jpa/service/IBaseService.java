@@ -52,13 +52,11 @@ public interface IBaseService<T, ID extends Serializable> {
 
     Page<T> query(final Map<String, Object> params, final Pageable pageable);
 
-    Page<T> queryDistinct(Map<String, Object> params, Pageable pageable);
+    Page<T> queryDistinct(final Map<String, Object> params, final Pageable pageable);
 
     <S extends T> Iterable<S> query(Example<S> example);
 
     <S extends T> Iterable<S> query(Example<S> example, Sort sort);
-
-    <S extends T> Page<S> queryDistinct(Example<S> example, Pageable pageable);
 
     <S extends T> Page<S> query(Example<S> example, Pageable pageable);
 
