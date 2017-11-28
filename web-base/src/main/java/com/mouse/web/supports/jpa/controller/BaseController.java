@@ -13,7 +13,7 @@ import java.security.Principal;
 import java.util.List;
 import java.util.Map;
 
-public class BaseController<T, ID extends Serializable> {
+public class BaseController<T, ID extends Serializable> extends BaseReadController<T, ID> {
 
     protected IBaseService<T, ID> getService() {
         return null;
@@ -23,13 +23,6 @@ public class BaseController<T, ID extends Serializable> {
     @RequestMapping(value = "/save")
     public T save(@EntityParam T entity) {
         T result = getService().save(entity);
-        return result;
-    }
-
-    @JSON()
-    @RequestMapping(value = "/get_by_id")
-    public T getById(ID id) {
-        T result = getService().findOne(id);
         return result;
     }
 
@@ -48,15 +41,4 @@ public class BaseController<T, ID extends Serializable> {
         return true;
     }
 
-    @JSON()
-    @RequestMapping(value = "/all")
-    public List<T> all() {
-        return getService().query();
-    }
-
-    @JSON()
-    @RequestMapping(value = "/query")
-    public Page<T> query(@MapParam Map<String, Object> params, @EntityParam PageParam pageable) {
-        return getService().query(params, pageable);
-    }
 }
