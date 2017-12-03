@@ -60,7 +60,7 @@ public class PageParam extends PageRequest {
                         if (sort == null) {
                             sort = new Sort(direction, property);
                         } else {
-                            sort.and(new Sort(direction, property));
+                            sort = sort.and(new Sort(direction, property));
                         }
                     }
                     Field field = ReflectionUtils.findField(this.getClass(), "sort");

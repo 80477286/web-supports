@@ -89,6 +89,7 @@ public class DynamicSpecification<T> implements Specification<T> {
 
 
     private Predicate generatePredicate(Root<T> root, CriteriaBuilder criteriaBuilder, Condition c) {
+        criteriaBuilder.disjunction();
         if (c != null && StringUtils.isNotEmpty(c.getOper())) {
             Path path = getPath(root, root, c.getPath());
             if (("eq".equalsIgnoreCase(c.getOper()) || "=".equalsIgnoreCase(c.getOper())) && c.getValue() != null) {
