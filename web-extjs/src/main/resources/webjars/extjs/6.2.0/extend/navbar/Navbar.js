@@ -19,7 +19,9 @@ Ext.define('Extend.navbar.Navbar', {
         itemActivedBackgroundColor: '#747474'
     },
     childEls: {
-        body: {dataRef: 'body'}
+        body: {dataRef: 'body'},
+        // body1: {select: 'div[data-ref="body"]'},//使用select会返回一个数组
+        // body2: {selectNode: 'div[data-ref="body"]'}//使用selectNode会返回单个节点
     },
     renderTpl: [
         '<style>',
