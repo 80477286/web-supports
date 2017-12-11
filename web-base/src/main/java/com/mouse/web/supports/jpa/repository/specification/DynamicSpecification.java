@@ -114,7 +114,7 @@ public class DynamicSpecification<T> implements Specification<T> {
                     }
                     return criteriaBuilder.or(predicates.toArray(new Predicate[predicates.size()]));
                 } else {
-                    return criteriaBuilder.like(path.as(String.class), c.getValue().toString());
+                    return criteriaBuilder.like(path.as(String.class), "%" + c.getValue().toString() + "%");
                 }
             } else if (":".equalsIgnoreCase(c.getOper()) && c.getValue() != null) {
                 return criteriaBuilder.like(path.as(String.class), "%" + c.getValue() + "%");
