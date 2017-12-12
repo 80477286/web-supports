@@ -17,6 +17,7 @@
       </profile>
     </annotationProcessing>
     <bytecodeTargetLevel>
+      <module name="ehcache-support" target="1.6" />
       <module name="ldap-local-example" target="1.6" />
       <module name="sso-server" target="1.6" />
       <module name="web-authorization" target="1.6" />

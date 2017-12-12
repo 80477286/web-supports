@@ -6,13 +6,9 @@
 <body>
 <div th:fragment="footer" class="navbar-fixed-bottom">
     <div class="container">
-        <footer>
+        <footer style="text-align: center">
             <!-- this is footer -->
-            © 2017 mkyong.com
-            <span sec:authorize="isAuthenticated()">
-                | Logged user: <span sec:authentication="name"></span> |
-                <a th:href="@{/logout}">Sign Out</a>
-            </span>
+            © 2017 中软国际科技服务有限公司
         </footer>
     </div>
 </div>

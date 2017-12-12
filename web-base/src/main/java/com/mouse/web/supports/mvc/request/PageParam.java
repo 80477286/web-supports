@@ -55,7 +55,7 @@ public class PageParam extends PageRequest {
                     Sort sort = null;
                     for (int i = 0; i < json.length(); i++) {
                         JSONObject item = json.getJSONObject(i);
-                        Sort.Direction direction = item.getString("direction").equals("ASC") ? Sort.Direction.ASC : Sort.Direction.DESC;
+                        Sort.Direction direction = item.getString("direction").equalsIgnoreCase("ASC") ? Sort.Direction.ASC : Sort.Direction.DESC;
                         String property = item.getString("property");
                         if (sort == null) {
                             sort = new Sort(direction, property);
